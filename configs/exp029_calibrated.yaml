@@ -1,0 +1,22 @@
+# exp028 with the regime classifier's probabilities calibrated. The raw classifier
+# is over-confident in both directions (findings 7.1: p above 0.98 was stale 63 %
+# of the time, p 0.5-0.7 only 24 %), and its false positives cost as much of the
+# holdout's squared error as its false negatives. Re-mapping p by the observed
+# rate per probability bin made things worse (364 -> 384), because within a bin
+# the rows with the largest deltas are the stale ones, so the curves here are
+# fitted per band of the row's largest candidate delta, on nested out-of-fold
+# probabilities of the fit universe, with the classifier's delta weights.
+# Read `rmse_ex_dayoffset` against exp028's 275.8 (floor +-0.5) and the
+# `mixture` block's `rmse_universe_mixture` vs `rmse_universe_mixture_uncalibrated`.
+# No refit: a check, not a submission.
+extends: exp028_final_stale_only.yaml
+name: calibrated
+notes: "exp028 with isotonic calibration of the regime classifier per delta band (nested OOF)"
+
+model:
+  refit_on_all: false
+  mixture:
+    calibration: isotonic
+    calibration_delta_bands: [7200, 14400, 28800]
+    calibration_folds: 3
+    calibration_min_rows: 200

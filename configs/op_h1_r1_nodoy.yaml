@@ -1,0 +1,9 @@
+# The H1 ladder without the day of year (findings 10.35): op_h1_r1 with op_h1_day_of_year dropped, as in the
+# deliverable (op_h1_r4_nodoy). On few inputs the day of year memorises the fit months' day-level conditions, which a
+# seasonal holdout puts on the wrong days (the long r0 gained about 10 s without it), so the ladder's steps are re-read
+# calendar-free. Holdout only.
+extends: op_h1_r1.yaml
+name: op_h1_r1_nodoy
+notes: "op_h1_r1 without the day-of-year column"
+features:
+  drop_columns: [takeoff_epoch, op_h1_day_of_year]

@@ -1,0 +1,12 @@
+# exp054 (one global regressor) with the NM join window in the mixture (exp056's window_column). The global run
+# blended at 30 % into v29's 17 per-airport runs took the clipped holdout 260.29 -> 259.19 without wrong-date rows
+# (bulk 212.99 -> 212.36): a member of another shape. Seeds 42 and 43 for the blend.
+extends: exp054_lean2_global.yaml
+name: lean2_global_window
+notes: "exp054 (global regressor) + NM join window in the mixture"
+model:
+  mixture:
+    window_column: lobt_delta_full
+  # the global regressor was still improving at the 4,000 cap (exp054: 213.15 at 2,000, 211.22 at 4,000, best 3,985)
+  params:
+    iterations: 12000

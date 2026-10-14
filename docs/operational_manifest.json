@@ -1,0 +1,449 @@
+{
+  "hl3": {
+    "file": "submissions\\operational\\hl3__2026-10-11T18-09-14__final_op_hl3_blend__4d74dbe5.parquet",
+    "sha1": "e2252da943f5849d94244bcd10f4da47425ee103",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean"
+    ],
+    "medians_s": {
+      "y_mean": 973.0
+    },
+    "source_runs": [
+      "2026-10-11T15-20-52__op_hl3_r4_rwyblind__c93d69e3__s42",
+      "2026-10-11T15-38-22__op_hl3_r4_rwyblind__c93d69e3__s43"
+    ],
+    "predict_runs": [
+      "2026-10-11T18-07-18__final_op_hl3_r4_rwyblind__344fa3e3__s42",
+      "2026-10-11T18-09-10__final_op_hl3_r4_rwyblind__8864ceeb__s43"
+    ],
+    "blend": "2026-10-11T18-09-14__final_op_hl3_blend__4d74dbe5",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": {
+      "rule_c": {
+        "passed": false,
+        "mae_gain": 2.921,
+        "within_120_gain": 0.0258,
+        "worst_airport_delta": 2.164,
+        "coverage_p10_p90": 0.7769,
+        "runs": [
+          "2026-10-11T15-20-52__op_hl3_r4_rwyblind__c93d69e3__s42",
+          "2026-10-11T15-38-22__op_hl3_r4_rwyblind__c93d69e3__s43"
+        ]
+      }
+    }
+  },
+  "hl24": {
+    "file": "submissions\\operational\\hl24__2026-10-11T18-11-54__final_op_hl24_blend__13b5a89d.parquet",
+    "sha1": "a395355fae0f144169e394d12d57915cabfbe28e",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean"
+    ],
+    "medians_s": {
+      "y_mean": 972.0
+    },
+    "source_runs": [
+      "2026-10-11T15-57-44__op_hl24_r3_rwyblind__930c7b15__s42",
+      "2026-10-11T16-13-52__op_hl24_r3_rwyblind__930c7b15__s43"
+    ],
+    "predict_runs": [
+      "2026-10-11T18-10-59__final_op_hl24_r3_rwyblind__2d102067__s42",
+      "2026-10-11T18-11-50__final_op_hl24_r3_rwyblind__83e0fac8__s43"
+    ],
+    "blend": "2026-10-11T18-11-54__final_op_hl24_blend__13b5a89d",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": {
+      "rule_c": {
+        "passed": false,
+        "mae_gain": 2.806,
+        "within_120_gain": 0.0244,
+        "worst_airport_delta": 2.175,
+        "coverage_p10_p90": 0.7772,
+        "runs": [
+          "2026-10-11T15-57-44__op_hl24_r3_rwyblind__930c7b15__s42",
+          "2026-10-11T16-13-52__op_hl24_r3_rwyblind__930c7b15__s43"
+        ]
+      }
+    }
+  },
+  "h1f": {
+    "file": "submissions\\operational\\h1f__2026-10-13T05-41-39__final_op_h1f_blend__08a90f35.parquet",
+    "sha1": "1cae0824c3bb164f691cfe5835073cf24b2f3e27",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean"
+    ],
+    "medians_s": {
+      "y_mean": 958.0
+    },
+    "source_runs": [
+      "2026-10-13T03-48-19__op_h1_f4_nodepthru__8946614f__s42",
+      "2026-10-13T04-23-37__op_h1_f4_nodepthru__8946614f__s43"
+    ],
+    "predict_runs": [
+      "2026-10-13T05-40-25__final_op_h1_f4_nodepthru__12c24c7d__s42",
+      "2026-10-13T05-41-33__final_op_h1_f4_nodepthru__ff16cb98__s43"
+    ],
+    "blend": "2026-10-13T05-41-39__final_op_h1f_blend__08a90f35",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": null,
+    "median_member": null,
+    "tier": "F: the other flights' realised movements after the anchor stand in for AMAN/DMAN/A-SMGCS plans; an upper bound for perfect plans, not available as computed (findings 10.36)"
+  },
+  "h1_r4_nodoy": {
+    "file": "submissions\\operational\\h1__2026-10-11T13-55-49__final_op_h1_blend__58d3474d__mae.parquet",
+    "sha1": "1dca8c80175d03f6117d4fe489804d6b4ac302d5",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean",
+      "y_p10",
+      "y_med",
+      "y_p90"
+    ],
+    "medians_s": {
+      "y_mean": 962.0,
+      "y_p10": 723.0,
+      "y_med": 921.0,
+      "y_p90": 1214.0
+    },
+    "source_runs": [
+      "2026-10-11T12-02-25__op_h1_r4_nodoy__4e884d3b__s42",
+      "2026-10-11T12-35-59__op_h1_r4_nodoy__4e884d3b__s43",
+      "2026-10-11T13-09-32__op_h1_r4_nodoy__4e884d3b__s44"
+    ],
+    "predict_runs": [
+      "2026-10-11T13-49-06__final_op_h1_r4_nodoy__00e26ad8__s42",
+      "2026-10-11T13-52-25__final_op_h1_r4_nodoy__060ef556__s43",
+      "2026-10-11T13-55-44__final_op_h1_r4_nodoy__3a749054__s44"
+    ],
+    "blend": "2026-10-11T13-55-49__final_op_h1_blend__58d3474d",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": {
+      "file": "runs/op_calib/h1_nodoy_pairs_lr08.parquet",
+      "sha1": "6836e3f824ae1b90fd094899849962e13c1a0cdf",
+      "fit": {
+        "pairs": [
+          "2026-10-10T01-53-25__op_h1_r4_nodoy_febdec__b205b17a__s42",
+          "2026-10-10T02-04-50__op_h1_r4_nodoy_marnov__9f7032b2__s42",
+          "2026-10-10T02-26-27__op_h1_r4_nodoy_aproct__c38cc5e9__s42",
+          "2026-10-10T02-48-33__op_h1_r4_nodoy_maysep__3d8a3023__s42",
+          "2026-10-10T03-12-24__op_h1_r4_nodoy_junaug__616e4666__s42"
+        ],
+        "months": [
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "n_fit": 1721301,
+        "n_bins": 20,
+        "quantiles": {
+          "p10": 0.1,
+          "med": 0.5,
+          "p90": 0.9
+        }
+      },
+      "rule_c": {
+        "passed": true,
+        "mae_gain": 3.583,
+        "within_120_gain": 0.0255,
+        "worst_airport_delta": -0.741,
+        "coverage_p10_p90": 0.7774,
+        "runs": [
+          "2026-10-11T12-02-25__op_h1_r4_nodoy__4e884d3b__s42",
+          "2026-10-11T12-35-59__op_h1_r4_nodoy__4e884d3b__s43",
+          "2026-10-11T13-09-32__op_h1_r4_nodoy__4e884d3b__s44"
+        ]
+      }
+    },
+    "median_member": {
+      "source_run": "2026-10-12T14-00-49__op_h1_r4_nodoy_mae_exact_cpu__00a32933__s42",
+      "predict_run": "2026-10-12T20-36-03__final_op_h1_r4_nodoy_mae_exact_cpu__54d9b63d__s42",
+      "config": "op_h1_r4_nodoy_mae_exact_cpu.yaml",
+      "clamped_into_band_share": 0.0081
+    }
+  },
+  "h1_r4_nodoy_calibrated_median": {
+    "file": "submissions\\operational\\h1__2026-10-11T13-55-49__final_op_h1_blend__58d3474d.parquet",
+    "sha1": "46e4da46b0e1553eb400e5bbb987bf14e2499b38",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean",
+      "y_p10",
+      "y_med",
+      "y_p90"
+    ],
+    "medians_s": {
+      "y_mean": 962.0,
+      "y_p10": 723.0,
+      "y_med": 920.0,
+      "y_p90": 1214.0
+    },
+    "source_runs": [
+      "2026-10-11T12-02-25__op_h1_r4_nodoy__4e884d3b__s42",
+      "2026-10-11T12-35-59__op_h1_r4_nodoy__4e884d3b__s43",
+      "2026-10-11T13-09-32__op_h1_r4_nodoy__4e884d3b__s44"
+    ],
+    "predict_runs": [
+      "2026-10-11T13-49-06__final_op_h1_r4_nodoy__00e26ad8__s42",
+      "2026-10-11T13-52-25__final_op_h1_r4_nodoy__060ef556__s43",
+      "2026-10-11T13-55-44__final_op_h1_r4_nodoy__3a749054__s44"
+    ],
+    "blend": "2026-10-11T13-55-49__final_op_h1_blend__58d3474d",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": {
+      "file": "runs/op_calib/h1_nodoy_pairs_lr08.parquet",
+      "sha1": "6836e3f824ae1b90fd094899849962e13c1a0cdf",
+      "fit": {
+        "pairs": [
+          "2026-10-10T01-53-25__op_h1_r4_nodoy_febdec__b205b17a__s42",
+          "2026-10-10T02-04-50__op_h1_r4_nodoy_marnov__9f7032b2__s42",
+          "2026-10-10T02-26-27__op_h1_r4_nodoy_aproct__c38cc5e9__s42",
+          "2026-10-10T02-48-33__op_h1_r4_nodoy_maysep__3d8a3023__s42",
+          "2026-10-10T03-12-24__op_h1_r4_nodoy_junaug__616e4666__s42"
+        ],
+        "months": [
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "n_fit": 1721301,
+        "n_bins": 20,
+        "quantiles": {
+          "p10": 0.1,
+          "med": 0.5,
+          "p90": 0.9
+        }
+      },
+      "rule_c": {
+        "passed": true,
+        "mae_gain": 3.583,
+        "within_120_gain": 0.0255,
+        "worst_airport_delta": -0.741,
+        "coverage_p10_p90": 0.7774,
+        "runs": [
+          "2026-10-11T12-02-25__op_h1_r4_nodoy__4e884d3b__s42",
+          "2026-10-11T12-35-59__op_h1_r4_nodoy__4e884d3b__s43",
+          "2026-10-11T13-09-32__op_h1_r4_nodoy__4e884d3b__s44"
+        ]
+      }
+    }
+  },
+  "h1": {
+    "file": "submissions\\operational\\h1__2026-10-13T13-54-07__final_op_h1_blend__aa1cd03b__mae.parquet",
+    "sha1": "4153b4ea3196de18211df8d6f492ffd0c0c7adb4",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean",
+      "y_p10",
+      "y_med",
+      "y_p90"
+    ],
+    "medians_s": {
+      "y_mean": 960.0,
+      "y_p10": 723.0,
+      "y_med": 922.0,
+      "y_p90": 1207.0
+    },
+    "source_runs": [
+      "2026-10-13T06-12-27__op_h1_f1_plan__40ac5f36__s42",
+      "2026-10-13T07-14-31__op_h1_f1_plan__40ac5f36__s43",
+      "2026-10-13T07-54-55__op_h1_f1_plan__40ac5f36__s44"
+    ],
+    "predict_runs": [
+      "2026-10-13T08-39-51__final_op_h1_f1_plan__724d91cb__s42",
+      "2026-10-13T08-40-52__final_op_h1_f1_plan__594fb443__s43",
+      "2026-10-13T08-41-56__final_op_h1_f1_plan__1448980b__s44"
+    ],
+    "blend": "2026-10-13T13-54-07__final_op_h1_blend__aa1cd03b",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": {
+      "file": "runs/op_calib/h1_f1_pairs_lr08.parquet",
+      "sha1": "c8f8e6a2f8023e4d35e048d6ff2c7e3b7febe918",
+      "fit": {
+        "pairs": [
+          "2026-10-13T10-25-06__op_h1_f1_plan_febdec__90fc7858__s42",
+          "2026-10-13T10-41-46__op_h1_f1_plan_marnov__80480474__s42",
+          "2026-10-13T11-22-39__op_h1_f1_plan_aproct__febd2876__s42",
+          "2026-10-13T12-08-36__op_h1_f1_plan_maysep__a4d54616__s42",
+          "2026-10-13T12-53-49__op_h1_f1_plan_junaug__bed6f3f6__s42"
+        ],
+        "months": [
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "n_fit": 1721301,
+        "n_bins": 20,
+        "quantiles": {
+          "p10": 0.1,
+          "med": 0.5,
+          "p90": 0.9
+        }
+      },
+      "rule_c": {
+        "passed": true,
+        "mae_gain": 3.506,
+        "within_120_gain": 0.0233,
+        "worst_airport_delta": -0.69,
+        "coverage_p10_p90": 0.7774,
+        "runs": [
+          "2026-10-13T06-12-27__op_h1_f1_plan__40ac5f36__s42",
+          "2026-10-13T07-14-31__op_h1_f1_plan__40ac5f36__s43",
+          "2026-10-13T07-54-55__op_h1_f1_plan__40ac5f36__s44"
+        ]
+      }
+    },
+    "median_member": {
+      "source_run": "2026-10-13T10-24-22__op_h1_f1_plan_mae_exact_cpu__d7b90aac__s42",
+      "predict_run": "2026-10-13T16-41-23__final_op_h1_f1_plan_mae_exact_cpu__e12f0411__s42",
+      "config": "op_h1_f1_plan_mae_exact_cpu.yaml",
+      "clamped_into_band_share": 0.0079
+    },
+    "tier": null
+  },
+  "h1_calibrated_median": {
+    "file": "submissions\\operational\\h1__2026-10-13T13-54-07__final_op_h1_blend__aa1cd03b.parquet",
+    "sha1": "f7f4f2ac87f3cc540e4ff601ba76bc3edb6cd835",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean",
+      "y_p10",
+      "y_med",
+      "y_p90"
+    ],
+    "medians_s": {
+      "y_mean": 960.0,
+      "y_p10": 723.0,
+      "y_med": 919.0,
+      "y_p90": 1207.0
+    },
+    "source_runs": [
+      "2026-10-13T06-12-27__op_h1_f1_plan__40ac5f36__s42",
+      "2026-10-13T07-14-31__op_h1_f1_plan__40ac5f36__s43",
+      "2026-10-13T07-54-55__op_h1_f1_plan__40ac5f36__s44"
+    ],
+    "predict_runs": [
+      "2026-10-13T08-39-51__final_op_h1_f1_plan__724d91cb__s42",
+      "2026-10-13T08-40-52__final_op_h1_f1_plan__594fb443__s43",
+      "2026-10-13T08-41-56__final_op_h1_f1_plan__1448980b__s44"
+    ],
+    "blend": "2026-10-13T13-54-07__final_op_h1_blend__aa1cd03b",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": {
+      "file": "runs/op_calib/h1_f1_pairs_lr08.parquet",
+      "sha1": "c8f8e6a2f8023e4d35e048d6ff2c7e3b7febe918",
+      "fit": {
+        "pairs": [
+          "2026-10-13T10-25-06__op_h1_f1_plan_febdec__90fc7858__s42",
+          "2026-10-13T10-41-46__op_h1_f1_plan_marnov__80480474__s42",
+          "2026-10-13T11-22-39__op_h1_f1_plan_aproct__febd2876__s42",
+          "2026-10-13T12-08-36__op_h1_f1_plan_maysep__a4d54616__s42",
+          "2026-10-13T12-53-49__op_h1_f1_plan_junaug__bed6f3f6__s42"
+        ],
+        "months": [
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "n_fit": 1721301,
+        "n_bins": 20,
+        "quantiles": {
+          "p10": 0.1,
+          "med": 0.5,
+          "p90": 0.9
+        }
+      },
+      "rule_c": {
+        "passed": true,
+        "mae_gain": 3.506,
+        "within_120_gain": 0.0233,
+        "worst_airport_delta": -0.69,
+        "coverage_p10_p90": 0.7774,
+        "runs": [
+          "2026-10-13T06-12-27__op_h1_f1_plan__40ac5f36__s42",
+          "2026-10-13T07-14-31__op_h1_f1_plan__40ac5f36__s43",
+          "2026-10-13T07-54-55__op_h1_f1_plan__40ac5f36__s44"
+        ]
+      }
+    },
+    "median_member": null,
+    "tier": null
+  },
+  "h1f5": {
+    "file": "submissions\\operational\\h1f5__2026-10-13T17-23-14__final_op_h1f5_blend__f7393913.parquet",
+    "sha1": "bac06dfdc0bf8399f17eee6baf9425edb3e6fceb",
+    "rows": 670790,
+    "columns": [
+      "MVT_ID_mvt",
+      "y_mean"
+    ],
+    "medians_s": {
+      "y_mean": 956.0
+    },
+    "source_runs": [
+      "2026-10-13T13-51-55__op_h1_f5_full__4fae29d6__s42",
+      "2026-10-13T15-42-58__op_h1_f5_full__4fae29d6__s43"
+    ],
+    "predict_runs": [
+      "2026-10-13T17-16-02__final_op_h1_f5_full__6ab35792__s42",
+      "2026-10-13T17-23-09__final_op_h1_f5_full__0740794d__s43"
+    ],
+    "blend": "2026-10-13T17-23-14__final_op_h1f5_blend__f7393913",
+    "data_version": "final26_7a06db85",
+    "tree": "data_final",
+    "template_sha1": "4006396e963f12ae93198b5e8dd93478adb35023",
+    "calibration": null,
+    "median_member": null,
+    "tier": "F: the other flights' realised movements after the anchor stand in for AMAN/DMAN/A-SMGCS plans; an upper bound for perfect plans, not available as computed (findings 10.36). The full concept F5 (findings 10.37): it also reads the realised departure side, whose gain carries traces of the own slot and cannot be credited to planning data (rule T, findings 10.36)"
+  }
+}

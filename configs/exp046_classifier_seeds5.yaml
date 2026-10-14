@@ -1,0 +1,12 @@
+# exp043 with the stale classifier averaged over five seeds (`model.mixture.classifier_seeds`). The hedge a row
+# pays is p(1 - p)(base - taxi)^2, and exp043's three seeds put the 2026 hedging cost at 16,314 / 16,397 / 15,334
+# (findings 9.11): the classifier's seed variance lands on the score. Averaging the classifier alone costs
+# about 2 min per extra seed and fit, where a full seed costs 52 min; the three-seed blend of whole runs (v15)
+# gained 1.3 s on the board. Note that averaging raises the measured hedging cost (Jensen) while it lowers the
+# true error, so this run is judged on the holdout and the board, not on `hedging.rank_refit`.
+extends: exp043_final_screen.yaml
+name: classifier_seeds5
+notes: "exp043 + classifier_seeds 5"
+model:
+  mixture:
+    classifier_seeds: 5

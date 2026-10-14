@@ -1,0 +1,13 @@
+# The adopted H1 deliverable (findings 10.37) on a 2025 month pair, like op_h1_r4_nodoy_maysep: validated on 2025-05+2025-09,
+# fitted on the other ten months; no refit, no permutation. Its residuals feed rule C's calibration tables, and
+# its months the generalisation check against op_h1_r4_nodoy_maysep.
+extends: op_h1_f1_plan.yaml
+name: op_h1_f1_plan_maysep
+notes: "op_h1_f1_plan on 2025-05+2025-09 (Feb-Jun 2026 analogue)"
+validation:
+  holdout_months: ["2025-05", "2025-09"]
+model:
+  refit_on_all: false
+evaluation:
+  permutation:
+    enabled: false

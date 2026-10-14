@@ -1,0 +1,15 @@
+# Shifted placebo of R6 (critique F14): op_h1_adsb computed from the events of 7 days earlier (same weekday, same coverage
+# regime, the wrong traffic). A gain from it measures era or coverage identity, not the surface picture. No refit, no
+# permutation.
+extends: op_h1_r6.yaml
+name: op_h1_r6_shift7
+notes: "op_h1_r6 placebo: ADS-B events shifted by 7 days"
+features:
+  params:
+    op_h1_adsb:
+      shift_days: 7
+model:
+  refit_on_all: false
+evaluation:
+  permutation:
+    enabled: false

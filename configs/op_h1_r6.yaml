@@ -1,0 +1,37 @@
+# H1 rung 6 (findings 10.31): R4 + the pre-movement ADS-B surface picture of OTHER aircraft (`op_h1_adsb`, public
+# adsb.lol positions up to H1 - 30 s: taxiing out and in, runway queue, remote stops, pushes, recent taxi times; tier O,
+# own-runway hold O*). Board- and final-scorable: run WITHOUT --no-test for the refit (test_predictions.parquet), with
+# --no-test for the read-out. Permutation on (the block's value). The coverage columns gate the three column families
+# (taxi, hold, stand: NaN, never zero, where a family's reception is missing or outside the airport's 2025 training
+# regime) and stay out of the model matrix (critique F6): they are only for gating and strata. The fit blanks the block
+# on a fixed quarter of its (airport, day) groups (model.block_dropout; the early-stopping set, the metrics and the
+# ranking rows keep every value), so "no feed" is learned at every airport and an outage degrades towards R4. The 2025
+# holdout cannot show 2026's reception regimes: read R6 - R4 there as an upper bound for 2026.
+# The block reads the ADS-B surface snapshot named by PRC_ADSB_SNAPSHOT (default s1 = every downloaded day, 2025 and
+# Jan-Jul 2026); build it with
+#   python -m prc adsb-surface --snapshot s1
+# then --check, then --support (the airport x family support table, an external of the block too), then --freeze; the
+# content digests of both tables key the block's cache.
+extends: op_base.yaml
+name: op_h1_r6
+notes: "operational H1 r6: + public ADS-B surface picture of other aircraft (board run)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm,
+            op_h1_adsb]
+  drop_columns: [takeoff_epoch, op_h1_adsb_cov_tko_n_120, op_h1_adsb_cov_ref_n_120, op_h1_adsb_cov_mov_ratio_120,
+                 op_h1_adsb_cov_mov_ratio_30, op_h1_adsb_cov_mov_ratio_10, op_h1_adsb_cov_act_ratio_5,
+                 op_h1_adsb_cov_taxi_share_120, op_h1_adsb_cov_push_share_360, op_h1_adsb_cov_taxi_ratio_120,
+                 op_h1_adsb_cov_hold_ratio_120, op_h1_adsb_cov_ok, op_h1_adsb_cov_taxi_ok, op_h1_adsb_cov_hold_ok,
+                 op_h1_adsb_cov_stand_ok]
+model:
+  refit_on_all: true
+  block_dropout:
+    op_h1_adsb: 0.25
+evaluation:
+  permutation:
+    enabled: true
+    repeats: 3

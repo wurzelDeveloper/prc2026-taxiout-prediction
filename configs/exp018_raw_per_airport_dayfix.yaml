@@ -1,0 +1,17 @@
+# exp015 (raw target, per-airport CatBoost) with the day-offset rule only.
+#
+# The rule flags training departures whose taxi time is within an hour of a whole
+# number of days: block time on the wrong date. Fifteen rows (13 LIRF, 1 LFPG, 1 LSZH).
+# The LSZH one is a Citation at 87,341 s (941 s plus a day); in a per-airport fit on the
+# raw target that single row is ~40 % of Zurich's training squared error, the model chases
+# it, and the validation curve turns up after 31 iterations (233.8 -> 271.7). Such rows are
+# unpredictable from features, so dropping them from the fit cannot cost honest RMSE.
+#
+# Pairwise against exp015 (411.2): expect rmse_LSZH ~210 instead of 234, overall ~1 s.
+extends: exp015_raw_per_airport.yaml
+name: catboost_raw_per_airport_dayfix
+notes: "exp015 + day_offset_tol_sec 3600 (15 wrong-date rows out of the fit)"
+
+data:
+  clean:
+    day_offset_tol_sec: 3600

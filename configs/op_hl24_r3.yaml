@@ -1,0 +1,13 @@
+# Long-horizon rung 3 at 24 h: + the schedule demand around P (the schedule): other flights' scheduled departures and
+# scheduled arrivals within +-30 / +-60 min of P, at the airport, on the own runway and at the own pier (plan data
+# only, no IOBT, the flight itself excluded; per-runway and per-pier counts O*: the other flights' recorded runway and
+# stand stand in for their planned ones). Lead-independent block (op_hl_demand). Holdout only, no refit; the
+# runway-blind twin op_hl24_r3_rwyblind is a deliverable candidate (rule R, findings 10.35).
+extends: op_base.yaml
+name: op_hl24_r3
+notes: "long horizon 24 h r3: + schedule demand"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_hl_static, op_hl_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_hl24_wx,
+            op_hl_demand]

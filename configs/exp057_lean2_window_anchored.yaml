@@ -1,0 +1,8 @@
+# exp056 (lean2 + join window) with the taxi regressor anchored on NM's proxy (target - clip(takeoff - AOBT_3,
+# 0, 7200)); the anchored member of two teams above us, here inside the windowed mixture.
+extends: exp056_lean2_window.yaml
+name: lean2_window_anchored
+notes: "exp056 + regressor anchored on aobt3_proxy"
+model:
+  mixture:
+    regressor_anchor: aobt3_proxy

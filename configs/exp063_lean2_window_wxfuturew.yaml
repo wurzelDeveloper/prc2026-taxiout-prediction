@@ -1,0 +1,8 @@
+# exp063_lean2_window_wxfuture on the Feb+Dec 2025 winter holdout (the months with snow-disrupted days)
+extends: exp063_lean2_window_wxfuture.yaml
+name: lean2_window_wxfuture_winter
+notes: "exp063_lean2_window_wxfuture on Feb+Dec 2025"
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+model:
+  refit_on_all: false

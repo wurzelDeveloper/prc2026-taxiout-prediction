@@ -1,0 +1,13 @@
+# exp005 (raw target, no clip) as ten per-airport models (exp003's model settings).
+#
+# On the log1p+clip base per-airport fitting was worth about 5 s of RMSE; the raw
+# target changes what each airport's model has to absorb, so measure it again.
+extends: exp005_catboost_raw_target.yaml
+name: catboost_raw_per_airport
+notes: "exp005 with per-airport models"
+
+model:
+  per_airport: true
+  params:
+    depth: 7
+    iterations: 3000

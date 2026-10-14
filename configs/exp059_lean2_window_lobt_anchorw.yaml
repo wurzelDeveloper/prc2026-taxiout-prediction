@@ -1,0 +1,8 @@
+# exp059_lean2_window_lobt_anchor on the Feb+Dec 2025 winter holdout: a winter base member for the ADS-B stage's extra training days (findings 10.13)
+extends: exp059_lean2_window_lobt_anchor.yaml
+name: lean2_window_lobt_anchor_winter
+notes: "exp059_lean2_window_lobt_anchor on Feb+Dec 2025"
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+model:
+  refit_on_all: false

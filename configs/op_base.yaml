@@ -1,0 +1,69 @@
+# The operational ladder (findings 10.25 plan): how much each data source is worth
+# for a taxi-out prediction made BEFORE the aircraft moves, on the challenge's harness, holdout and metrics.
+# Every rung is one global CatBoost with exp060's settings (lr 0.08, depth 7, l2 3, border 128, od_wait 200, GPU)
+# but an 8,000-round cap; no mixture, no residual base, no join window, raw target. The fit drops targets above
+# 2 h and wrong-date rows (data.clean); every holdout row is still scored. Permutation is off except on
+# op_h1_r4 (the board rung) and op_h0_r5. Extends base.yaml directly so nothing of exp002's log1p/clip or
+# exp060's mixture is inherited; feature lists are replaced, not merged, so every rung spells out its blocks.
+# Never in a board/refit config: op_h0_* and *_lab (they read the airport's 2025 off-block records).
+#
+# Where it runs: cache/, runs/ and submissions/ follow the checkout (only data follows PRC_DATA_DIR). From the
+# worktree, set $env:PRC_DATA_DIR = "<main>\data". Warm without the fold-dependent NM blocks (`prc features`
+# would build them once under fold_warm/, which `prc train` never reads):
+#   python -m prc features -c op_h1_r5.yaml -o "features.exclude=[op_h1_nm]"
+#   python -m prc features -c op_h0_r5.yaml -o "features.exclude=[op_h0_nm]"
+# Before the board rung: OPLAD_REAL=1 and OPLAD_FULL=1 pytest tests/test_operational.py (the full-frame anchor
+# sanity is a required gate). Board path: `prc submit` writes <worktree>/submissions/.
+#
+# Early stopping: model.eval_max_target_sec (7,200 s, prc/train.py `_eval_set`) restricts the early-stopping rows to
+# the population the fit keeps, as C1's mixture regressor does (without it a plain CatBoost would stop on the whole
+# uncleaned holdout, stale and wrong-date rows included); every holdout row is still scored. lab/op_ladder_report.py
+# prints each run's best iteration.
+extends: base.yaml
+name: op_base
+notes: "operational ladder base: H1 record and plan (= op_h1_r0)"
+
+data:
+  clean:
+    max_taxi_sec: 7200
+    day_offset_tol_sec: 3600
+    drop_from_fit: true
+
+features:
+  include:
+    - core_keys
+    - stand_runway_keys
+    - aircraft_identity
+    - op_h1_static
+    - op_h1_plan
+  exclude: []
+  drop_columns: [takeoff_epoch]
+
+target:
+  transform: none
+  clip: null
+  residual_of: null
+
+model:
+  type: catboost
+  per_airport: false
+  refit_on_all: false
+  eval_max_target_sec: 7200
+  params:
+    task_type: GPU
+    devices: "0"
+    iterations: 8000
+    learning_rate: 0.08
+    depth: 7
+    l2_leaf_reg: 3.0
+    one_hot_max_size: 16
+    border_count: 128
+    od_wait: 200
+    verbose: 250
+
+evaluation:
+  permutation:
+    enabled: false
+    granularity: block
+    repeats: 3
+    sample: 200000

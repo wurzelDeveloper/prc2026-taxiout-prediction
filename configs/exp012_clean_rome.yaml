@@ -1,0 +1,13 @@
+# exp011 plus the Rome segment: LIRF departures with no AIRCRAFT_TYPE_mvt (1,487 training
+# rows, 29.5 % of them with taxi-out above 2 h, mean 6,500 s). They carry most of the
+# holdout's squared error -- and the 2026 ranking set holds 383 of their twins, which
+# are scored. Dropping them from the fit should therefore make `rmse` worse (the model
+# predicts normal taxi times for rows that are not normal) while `rmse_clean` improves.
+# The question this config answers is by how much, on both numbers.
+extends: exp011_clean_fit.yaml
+name: catboost_clean_rome
+notes: "exp011 + drop untyped LIRF departures from the fit"
+
+data:
+  clean:
+    untyped_airports: [LIRF]

@@ -1,0 +1,19 @@
+# Long-horizon rung 4 at 3 h + the historical ADS-B archive (op_adsb_archive: per stand, pier, stand x runway and
+# runway, the fit rows' power-out share, push and engine-start durations, time from the off-block to 8 kt and to
+# 100 / 300 / 1,000 m, shrunk toward pier and airport; month-out; a lookup table, no live ADS-B). Runway-aware: it reads
+# the flight's own recorded runway, which hours ahead is the outcome of a future runway configuration, so this rung is
+# an O* upper bound and never the deliverable; the refit rung of this lead is op_hl3_r4_rwyblind. Holdout only.
+# Needs the archive input: python -m prc.adsb.archive (from a worktree add --obs <main>/cache/lab/ideas/stand_archive_obs
+# --src <main>/cache/adsb, or copy the built file and manifest).
+extends: op_base.yaml
+name: op_hl3_r4_arch
+notes: "long horizon 3 h r4 + ADS-B archive (runway-aware O* upper bound)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_hl_static, op_hl_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_hl3_wx,
+            op_hl_demand,
+            op_hl3_hist,
+            op_adsb_archive]
+model:
+  refit_on_all: false

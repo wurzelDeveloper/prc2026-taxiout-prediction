@@ -1,0 +1,8 @@
+# exp066 (one global regressor + NM join window, trained longer; weight 0.25 in v69's base stack) with depth 9 instead
+# of 7: the project owner's request of 8 Oct 2026. Single change: the regressor's tree depth (findings 10.30).
+extends: exp066_lean2_global_window_long.yaml
+name: lean2_global_window_deep
+notes: "exp066 at depth 9 (best configuration, increased depth)"
+model:
+  params:
+    depth: 9

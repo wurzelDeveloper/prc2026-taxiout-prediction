@@ -1,0 +1,22 @@
+# exp030 with the regime mixture's universe widened from schedule deltas of 2 h to 30 min, and the
+# label tolerance tightened from 600 s to 60 s.
+#
+# Stale block times (block = schedule, so target = takeoff - schedule) are not only a multi-hour tail.
+# Among departures 30-120 min behind schedule, the target equals the schedule delta within a minute on
+# 9.1 % of LIRF rows (57,639 a year), 3.4 % at EGLL, 2.3 % at LTFM, under 1.1 % elsewhere; at LIRF it is
+# a carrier trait (one carrier 99.7 %, others 24-32 %, KLM/Swiss/TAP under 1 %) and a pier trait (pier 9
+# 22 %, pier 4 2 %), stable over the months. The regressor meets these rows as taxi times: 572 LIRF
+# bulk rows with |error| > 900 s carry 65 % of LIRF's bulk squared error in exp030, both stale rows
+# predicted as taxis and genuine taxis hedged up by an hour. The mixture prices them as p * delta +
+# (1 - p) * taxi and fits the regressor without them.
+#
+# The tolerance: for deltas of 2 h+, 431 of the 476 rows within 600 s of the delta sit within 60 s;
+# between 30 and 120 min, 41,000 rows sit 5-10 min short of the delta (a pushback 5-10 min after the
+# schedule and a genuine 20 min+ taxi), so 600 s would label them stale. 60 s keeps ~10,000 a year.
+extends: exp030_final_context.yaml
+name: mixture_30min
+notes: 'exp030 with the mixture universe from 30 min schedule deltas and a 60 s label tolerance'
+model:
+  mixture:
+    min_base_sec: 1800
+    tol_sec: 60

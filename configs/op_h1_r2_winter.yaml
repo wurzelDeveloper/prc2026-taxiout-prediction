@@ -1,0 +1,7 @@
+# Priority 2: r2 (record, plan, layout, weather) on the Feb+Dec 2025 holdout, as exp029_winter_check.yaml sets it:
+# Jan+Jul 2025 holds no snow day, so weather's value is only visible here. Read rmse_disrupted with n_disrupted_val.
+extends: op_h1_r2.yaml
+name: op_h1_r2_winter
+notes: "operational H1 r2 on the Feb+Dec 2025 holdout"
+validation:
+  holdout_months: ["2025-02", "2025-12"]

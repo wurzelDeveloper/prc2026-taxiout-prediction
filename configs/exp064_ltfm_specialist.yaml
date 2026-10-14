@@ -1,0 +1,8 @@
+# Option 2 of the night of 2-3 Oct: an Istanbul specialist. exp056 trained and validated on LTFM only (LTFM has no
+# ADS-B coverage, so the base model alone predicts its 14 % of the 2026 departures). Variants via -o on
+# model.params; the winner, if any, would replace LTFM's base prediction or be blended into it.
+extends: exp056_lean2_window.yaml
+name: ltfm_specialist
+notes: "exp056 on LTFM only (specialist screen)"
+data:
+  airports: [LTFM]

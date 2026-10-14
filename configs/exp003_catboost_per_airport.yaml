@@ -1,0 +1,19 @@
+# Ten focused models instead of one global one.
+#
+# Taxi geometry is airport-specific -- EGLL's median taxi-out is 1373s against
+# LSZH's 720s, and the stand vocabularies do not overlap at all -- so this is a
+# real contender, not a fallback. Also faster per model (~208k rows each).
+#
+# Compare directly against exp002 on the leaderboard; the only difference is
+# model.per_airport.
+extends: exp002_catboost_core.yaml
+name: catboost_per_airport
+notes: "per-airport models, otherwise identical to exp002"
+
+model:
+  per_airport: true
+  params:
+    # Smaller trees: each model sees a tenth of the rows and one airport's
+    # vocabulary, so depth 8 would mostly buy variance.
+    depth: 7
+    iterations: 3000

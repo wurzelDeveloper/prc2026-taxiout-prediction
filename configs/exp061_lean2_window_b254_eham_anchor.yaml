@@ -1,0 +1,12 @@
+# exp056 (lean2 + join window) with border_count 254 (-0.97 s on the hedge-free bulk in the 18 Sep sweep, no GPU
+# cost) and the proxy anchor at EHAM only (CPU test: EHAM regressor 176.4 -> 168.1, all of it on proxies above an
+# hour, which 2026 has 11x as often as 2025: its snow days; the anchor hurts EGLL and LEBL).
+extends: exp056_lean2_window.yaml
+name: lean2_window_b254_eham_anchor
+notes: "exp056 + border_count 254 + aobt3_proxy anchor at EHAM"
+model:
+  params:
+    border_count: 254
+  mixture:
+    regressor_anchor: aobt3_proxy
+    anchor_airports: [EHAM]

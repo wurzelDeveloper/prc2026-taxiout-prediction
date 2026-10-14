@@ -1,0 +1,23 @@
+# exp023b (wide regime mixture) plus every external group: geometry, METAR, TAF.
+# Same reasoning as exp025: exp014's "within noise" was read on a tail-dominated
+# headline. Read `rmse_ex_dayoffset` and the per-airport columns.
+#
+# Needs `fetch-geometry` and `fetch-weather`.
+extends: exp023b_raw_per_airport_mixture_wide.yaml
+name: mixture_all_external
+notes: "exp023b + geometry + weather + weather_fcst, judged on rmse_ex_dayoffset"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:stale
+    - group:weather
+    - group:weather_fcst
+    - group:geometry
+  exclude: []

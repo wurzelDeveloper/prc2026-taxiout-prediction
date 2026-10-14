@@ -1,0 +1,49 @@
+# First real model: every feature group, single global CatBoost.
+extends: base.yaml
+name: catboost_core
+notes: "all feature groups, global model"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+  exclude: []
+
+target:
+  transform: log1p     # the target is right-skewed (p50 948s, p99.9 5905s)
+  clip: [60, 7200]
+
+model:
+  type: catboost
+  per_airport: false
+  params:
+    # Sized so a full-data run finishes in well under an hour on 14 cores.
+    # Measured ~1.3-2.2 s/iteration on the full 1.74M-row split -- short
+    # benchmarks report ~0.5 s/iter and are not to be trusted, because
+    # quantization caches stay warm between fits in one process. Watch the real
+    # rate with `python -m prc progress`.
+    # For a stronger (slower) model:
+    #   -o model.params.iterations=4000 model.params.learning_rate=0.05
+    #
+    # GPU (RTX 4070 Laptop, 8 GB), measured 2026-09-14 on this config: 20 % sample
+    # 89 s fit vs 398 s on 14 CPU cores at the same RMSE (439.7 vs 440.5); full
+    # data 298 s fit (~0.2 s/iteration) vs ~1.34 s/iteration on CPU. GPU fits
+    # are non-deterministic run to run, so measure the seed-noise floor on the
+    # GPU too (`train --seeds 3`) before reading any ablation delta. Every
+    # child config inherits this; `-o model.params.task_type=CPU` goes back.
+    task_type: GPU
+    iterations: 1500
+    learning_rate: 0.08
+    depth: 8
+    l2_leaf_reg: 3.0
+    one_hot_max_size: 16
+    # 128 rather than the default 254: measured ~2x faster per iteration on the
+    # full 1.74M-row training split with no meaningful accuracy cost here.
+    border_count: 128
+    od_wait: 200
+    verbose: 250

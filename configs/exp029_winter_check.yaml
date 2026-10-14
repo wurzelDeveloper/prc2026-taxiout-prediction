@@ -1,0 +1,19 @@
+# exp028's folds on a winter holdout. Jan+Jul 2025, the seasonal analogue of the
+# test months, holds no snow day; the 2026 ranking months do (EHAM 4-5 Jan, LFPG
+# 7 Jan, LTFM 18-19 Jan, EDDF 26 Jan, read off the arrivals' taxi-in times and
+# the METARs; findings.md section 7.3). Feb 2025 holds the LTFM snow day of
+# 23 Feb and Dec 2025 the EDDM/LFPG disruption, so a feature meant for snow,
+# de-icing or cancellations is judged here, on `rmse_disrupted` with its
+# `n_disrupted_val`, and on `rmse_ex_dayoffset`; on Jan+Jul it can only be
+# noise. This is the base the add-to-base variants of the winter sweep extend
+# (`prc ablate -c exp029_winter_check.yaml --mode add-to-base --emit-configs`).
+# No refit: a check, not a submission.
+extends: exp028_final_stale_only.yaml
+name: winter_check
+notes: "exp028 on a Feb+Dec 2025 holdout: the months with disrupted days"
+
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+
+model:
+  refit_on_all: false

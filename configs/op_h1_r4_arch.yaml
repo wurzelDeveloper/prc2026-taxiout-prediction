@@ -1,0 +1,19 @@
+# H1 rung 4 (15 min before the planned off-block) + the historical ADS-B archive (op_adsb_archive, a lookup table of the
+# fit rows' archived tracks per stand, stand x runway and runway; no live ADS-B). r4_arch - r4 = the archive's value at
+# H1. Needs the archive input: python -m prc.adsb.archive (from a worktree add --src <main checkout>/cache/adsb).
+# Holdout only: no refit, no permutation.
+extends: op_h1_r4.yaml
+name: op_h1_r4_arch
+notes: "operational H1 r4 + ADS-B archive"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm,
+            op_adsb_archive]
+model:
+  refit_on_all: false
+evaluation:
+  permutation:
+    enabled: false

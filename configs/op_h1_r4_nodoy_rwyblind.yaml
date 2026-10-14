@@ -1,0 +1,17 @@
+# The runway comparator of the H1 deliverable (findings 10.35): op_h1_r4_nodoy without every own-runway column (the
+# drop list of op_h1_r4_rwyblind plus the day of year), so the headline's runway assumption (O*: the planned runway
+# known 15 min ahead) is shown beside a like-for-like blind figure. Holdout only.
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_r4_nodoy_rwyblind
+notes: "op_h1_r4_nodoy, runway-blind"
+features:
+  drop_columns: [takeoff_epoch, op_h1_day_of_year, runway, apt_runway, apt_stand_runway, geo_gc_dist_m, geo_rwy_matched,
+                 geo_rwy_length_m, geo_rwy_threshold_bearing_deg, geo_route_dist_m, geo_route_ratio,
+                 geo_route_rwy_crossings, geo_route_found, op_h1_wx_headwind_kt, op_h1_wx_crosswind_kt,
+                 op_h1_dep_rwy_b15, op_h1_dep_rwy_b30, op_h1_arr_rwy_b15, op_h1_gap_last_dep_rwy_s,
+                 op_h1_gap_last_arr_rwy_s, op_h1_rwy_own_share_b60, op_h1_rwy_own_dominant_b60,
+                 op_h1_nm_rwy_b30_anom_mean, op_h1_nm_rwy_b30_anom_share5, op_h1_nm_rwy_b30_push_delay_mean,
+                 op_h1_nm_rwy_b60_anom_mean, op_h1_nm_rwy_b60_anom_share5, op_h1_nm_rwy_b60_push_delay_mean,
+                 op_h1_backlog_rwy]
+model:
+  refit_on_all: false

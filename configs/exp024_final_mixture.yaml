@@ -1,0 +1,17 @@
+# Submission run: exp023b (raw target, per-airport CatBoost, the stale and wrong-date
+# regimes as a classifier x base mixture over the wide universe) with a refit on all
+# twelve months for the ranking predictions and an iteration cap the detector never
+# reaches. The classifier's refit budget is the folds' early-stopped count scaled by
+# the row ratio, like the regressor's (`refit.json` records both).
+#
+# No cleaning rule, for the same reason as exp022: the wrong-date rows are scored
+# in 2026. `prc submit` clips at 200,000 s, so multi-hour predictions survive.
+# Run `--seeds 3 --keep-test`, then `prc blend`, for the seed-averaged submission.
+extends: exp023b_raw_per_airport_mixture_wide.yaml
+name: final_mixture
+notes: "exp023b + refit on all months, iteration cap 4000; submission candidate"
+
+model:
+  refit_on_all: true
+  params:
+    iterations: 4000

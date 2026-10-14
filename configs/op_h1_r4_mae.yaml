@@ -1,0 +1,18 @@
+# H1 rung 4 with an MAE loss (metric sensitivity, never a board run): op_h1_r4's features and settings, fitted
+# and early-stopped on MAE instead of RMSE. An RMSE-trained rung is handicapped in MAE and within-tolerance
+# comparisons with published MAE-trained models; this rung measures by how much. eval_metric must be set too:
+# prc/models/gbdt.py CATBOOST_DEFAULTS sets eval_metric RMSE, which would otherwise drive early stopping.
+# Holdout only (--no-test): no refit, no permutation. MAE gradients converge more slowly at lr 0.08, so check
+# the best iteration against the 8,000-round cap (lab/op_ladder_report.py prints it). GPU support for MAE is
+# confirmed by the smoke fit, not assumed.
+extends: op_h1_r4.yaml
+name: op_h1_r4_mae
+notes: "operational H1 r4, MAE loss (metric sensitivity)"
+model:
+  refit_on_all: false
+  params:
+    loss_function: MAE
+    eval_metric: MAE
+evaluation:
+  permutation:
+    enabled: false

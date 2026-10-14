@@ -1,0 +1,24 @@
+# Reference scores, no ML library involved.
+#
+# Run all three before trusting any model. Their expected values are known
+# (see prc/models/baselines.py); a trained model that lands dramatically below
+# them is a leak, not a result.
+#
+#   python -m prc train -c exp001_baselines.yaml -o model.type=median
+#   python -m prc train -c exp001_baselines.yaml -o model.type=group_median
+#   python -m prc train -c exp001_baselines.yaml -o model.type=aobt3_proxy
+extends: base.yaml
+name: baselines
+notes: "median / stand-runway median / NM off-block proxy"
+
+features:
+  include: [group:core, group:stand_runway, group:nm_schedule]
+  exclude: [stand_runway_target_stats]   # the baselines do their own lookups
+
+model:
+  type: group_median
+  params: {}
+
+evaluation:
+  permutation:
+    enabled: false     # baselines have no learned feature use to permute

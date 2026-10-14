@@ -1,0 +1,16 @@
+# Rule M of findings 10.35 (a sensitivity): the H1 deliverable's features fitted and early-stopped on MAE with exact
+# leaves (the median of the residuals in each leaf). The earlier MAE rungs used gradient leaves, which CatBoost's GPU
+# chose by default on this data: op_h1_r4_mae (lr 0.08) and op_h1_r4_mae_fast (lr 0.25, 30,000 rounds) both stopped at
+# their caps. Exact leaves need plain boosting on the GPU (ordered boosting refuses them), set here explicitly.
+# Holdout only, never refit.
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_r4_nodoy_mae_exact
+notes: "op_h1_r4_nodoy, MAE loss with exact leaves (rule M)"
+model:
+  refit_on_all: false
+  params:
+    loss_function: MAE
+    eval_metric: MAE
+    leaf_estimation_method: Exact
+    boosting_type: Plain
+    iterations: 16000

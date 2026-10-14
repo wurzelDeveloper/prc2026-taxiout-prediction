@@ -1,0 +1,25 @@
+# exp015 (raw target, per-airport CatBoost) plus the stale-schedule regime as a residual base.
+#
+# On the untyped, NM-less segment (essentially Rome; 42 % of exp015's holdout squared
+# error) the model fits y - (takeoff - schedule) and the exact delta is added back
+# outside the trees, so a stale record (block time == schedule) needs a residual of
+# zero, not a staircase over a quantised feature. Everywhere else the base is NaN and
+# the target is fitted raw, as in exp015. Pairwise against exp015 (411.2; LIRF 1104).
+extends: exp015_raw_per_airport.yaml
+name: catboost_raw_per_airport_stale
+notes: "exp015 + stale_schedule block, target.residual_of stale_base"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:stale
+  exclude: []
+
+target:
+  residual_of: stale_base

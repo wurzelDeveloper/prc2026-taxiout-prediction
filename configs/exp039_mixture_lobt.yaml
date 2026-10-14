@@ -1,0 +1,11 @@
+# exp037 with a second stale candidate: the LOBT delta (takeoff minus NM's last known off-block time).
+# Barcelona's July misses match it (findings 8.2: 55 % of LEBL's July rows missed by > 900 s have a target
+# equal to the LOBT delta within a minute, 40 % the schedule delta), and the 14th-placed team's latest step
+# was a LOBT residual expert (9.2). Each labelled row takes its nearest candidate. Judged on
+# rmse_ex_dayoffset and LEBL July, not on the bulk metric (a regime change moves rows across the 3,600 s line).
+extends: exp037_final_era5_mixture.yaml
+name: mixture_lobt
+notes: 'exp037 + lobt_delta_full as a second mixture base'
+model:
+  mixture:
+    bases: [sched_delta_full, lobt_delta_full]

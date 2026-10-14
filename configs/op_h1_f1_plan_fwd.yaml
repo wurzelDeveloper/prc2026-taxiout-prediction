@@ -1,0 +1,10 @@
+# Forward check of the adopted H1 deliverable (findings 10.37, rule F as in 10.35): op_h1_f1_plan fitted on
+# January-October 2025 and validated on November and December, like op_h1_r4_nodoy_fwd. No refit.
+extends: op_h1_f1_plan.yaml
+name: op_h1_f1_plan_fwd
+notes: "op_h1_f1_plan, forward holdout (fit Jan-Oct, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

@@ -1,0 +1,14 @@
+# Rule T's placebo (findings 10.36): op_h1_f4_adsb with every F block read 7 days earlier at the same time of day
+# (shift_days: 7). The plans (O*) stay. A gain that survives here is the airport's era or the flight's identity, not
+# the traffic of the day.
+extends: op_h1_f4_adsb.yaml
+name: op_h1_f4_shift7
+notes: "rule T placebo: the F blocks read 7 days earlier"
+features:
+  params:
+    op_h1_fut_rec: {shift_days: 7}
+    op_h1_fut_nm: {shift_days: 7}
+    op_h1_fut_adsb: {shift_days: 7}
+evaluation:
+  permutation:
+    enabled: false

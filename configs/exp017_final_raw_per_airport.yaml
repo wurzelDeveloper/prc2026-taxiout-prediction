@@ -1,0 +1,27 @@
+# Submission run: exp015 (raw target, one CatBoost per airport; RMSE 411.2 on the
+# Jan+Jul 2025 holdout against exp005's 430 +- 2) with a refit on all twelve months.
+#
+# The fold model that scores the holdout has never seen a January or a July, the
+# seasonal twins of the test months; the refit has. It runs without an early-stopping
+# set, for the folds' best iteration scaled by the row ratio (about x1.2), and its
+# predictions replace the fold mean in test_predictions.parquet (the fold mean stays in
+# test_predictions_folds.parquet; the log compares the two).
+#
+# `iterations` is raised because two of exp015's ten fold models (EHAM, LTFM) ran into
+# the 3000 cap, so there the cap was doing the stopping, not the validation curve.
+#
+# The day-offset rule (exp018) keeps 15 wrong-date rows out of the fit; without it the
+# LSZH fold model early-stops at iteration 31 on one 87,341 s row and the refit would
+# hand Zurich a ~37-tree model. Swap in exp019's rules only if they win on `rmse`.
+extends: exp015_raw_per_airport.yaml
+name: final_raw_per_airport
+notes: "exp015 + day-offset rule + refit on all months, iteration cap 4000; submission candidate"
+
+data:
+  clean:
+    day_offset_tol_sec: 3600
+
+model:
+  refit_on_all: true
+  params:
+    iterations: 4000

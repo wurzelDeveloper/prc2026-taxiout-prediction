@@ -1,0 +1,8 @@
+# exp020's features without the residual mechanism: the stale_schedule block as plain
+# features on top of exp015. Isolates what the residual base adds beyond the columns.
+extends: exp020_raw_per_airport_stale.yaml
+name: catboost_raw_per_airport_stale_feat
+notes: "exp015 + stale_schedule block as features only (no residual)"
+
+target:
+  residual_of: null

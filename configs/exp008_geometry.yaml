@@ -1,0 +1,23 @@
+# exp002 plus measured airport geometry: where the stand is, and the
+# straight-line and routed taxi distance to the departure runway threshold.
+#
+# Needs the geometry tables: `python -m prc fetch-geometry` (after `prepare`).
+# Compare directly against exp002 on the leaderboard; the only difference is
+# `group:geometry`. To separate the heuristic from the routed distance:
+#   python -m prc ablate -c exp008_geometry.yaml --mode add-one-in --blocks taxi_distance,taxi_route,stand_geometry
+extends: exp002_catboost_core.yaml
+name: catboost_geometry
+notes: "exp002 + group:geometry (stand position, straight-line and routed taxi distance)"
+
+features:
+  # Lists replace rather than merge, so every group is repeated here.
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:geometry
+  exclude: []

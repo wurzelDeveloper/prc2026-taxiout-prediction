@@ -1,0 +1,14 @@
+# exp043 (v13; three-seed blend v15 = board 304.85) under a forward validation: fit on January-October 2025,
+# validate on November and December. The seasonal holdout (Jan+Jul) interpolates, since its fit has the months on
+# both sides, and ranked exp044 (every built block) above exp043 where the board did the opposite (306.13 against
+# 309.04). The ranking months lie after every training month, as November and December do here, and they include
+# winter. First the calibration (exp048 against exp048b, two seeds each), then the leave-one-out trimming from
+# this base (findings 9.16). No refit: a check, not a submission.
+extends: exp043_final_screen.yaml
+name: forward_base
+notes: "exp043 under forward_holdout (fit Jan-Oct 2025, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

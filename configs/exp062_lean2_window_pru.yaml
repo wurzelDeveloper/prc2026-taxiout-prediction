@@ -1,0 +1,29 @@
+# exp056 + pru_daily (EUROCONTROL PRU daily delays; tier P, challenge-only: published after the day)
+extends: exp056_lean2_window.yaml
+name: lean2_window_pru
+notes: "exp056 + pru_daily (EUROCONTROL PRU daily delays; tier P, challenge-only: published after the day)"
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - dep_live_state
+  - deicing_context
+  - group:geometry
+  - stand_occupancy
+  - wake_queue
+  - delay_stale_stats
+  - pru_daily

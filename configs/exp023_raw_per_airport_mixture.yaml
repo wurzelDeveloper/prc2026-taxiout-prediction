@@ -1,0 +1,45 @@
+# exp020's features and per-airport regressor, with the stale regime handled as an
+# explicit mixture instead of a residual base.
+#
+# On the untyped, NM-less segment (essentially Rome) about half the targets are a
+# stale block time (takeoff minus schedule) and half a normal taxi after an hours-
+# long delay. exp020 fits y - delta there, so one regressor has to learn
+# -(1 - p) * (delta - taxi): a probability times a row-varying delta, which trees
+# quantise badly (Rome 779, its sub-2 h rows 488 from the hedging). Here a small
+# CatBoost classifier gives P(stale | x) on the segment and the prediction is
+# p * delta + (1 - p) * taxi, the MSE-optimal mixture; the regressor is fitted
+# without the stale rows, so it learns taxi times only.
+#
+# A third regime, "a whole day plus a taxi", covers the wrong-date block times: in the
+# suspect segment every row with a schedule delta above eight hours is stale or a
+# wrong-date row (twelve of the year's fifteen sit there), so the classifier can
+# hedge them; without the regime they stay in the regressor's fit as 87,000 s "taxi
+# times" and drag every neighbouring prediction up by hours.
+#
+# Pairwise against exp020 (349.1 on the holdout; Rome-only 779.1). The classifier
+# runs on the CPU: 1,500 rows are faster there than on the GPU.
+extends: exp020_raw_per_airport_stale.yaml
+name: catboost_raw_per_airport_mixture
+notes: "exp020's features; stale regime as classifier x base mixture, regressor without stale rows"
+
+target:
+  residual_of: null
+
+model:
+  mixture:
+    enabled: true
+    bases: [sched_delta_full]
+    universe_column: stale_suspect
+    min_base_sec: null           # the suspect segment only; exp023b widens it
+    base_min_sec: 0
+    tol_sec: 600
+    tol_frac: 0.0
+    day_offset: true
+    day_tol_sec: 3600
+    exclude_stale_from_regressor: true
+    classifier_eval: true
+    classifier_params:
+      iterations: 500
+      learning_rate: 0.05
+      depth: 4
+      od_wait: 100

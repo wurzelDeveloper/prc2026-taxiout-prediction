@@ -1,0 +1,49 @@
+# Screening run: exp037 plus every built block outside the submission line, with block permutation on, no refit.
+# The 2026-09-20 sweep judged most of these on `rmse_ex_dayoffset` against a +-2 s floor; the bulk metric
+# (+-0.15 s) did not exist then. Blocks whose permutation importance is positive here get an add-to-base run of
+# their own (substitutes can both read near zero, so borderline ones too). Left out: `pru_daily` (published after
+# the day, out by policy), `wx_future` (weather after takeoff), `flight_number_history` (+6.5 s in the sweep).
+extends: exp037_final_era5_mixture.yaml
+name: screen_unused
+notes: "exp037 + all unused blocks + dep_live_state + deice_location, permutation on: screen only"
+
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - group:geometry
+  - stand_occupancy
+  - pier_pushback
+  - zone_load
+  - traffic_deviation
+  - flight_number_context
+  - stale_day_context
+  - taf_now
+  - taf_planning
+  - wx_trend
+  - wake_queue
+  - delay_stale_stats
+  - deicing_context
+  - dep_live_state
+  - deice_location
+
+model:
+  refit_on_all: false
+
+evaluation:
+  permutation:
+    enabled: true

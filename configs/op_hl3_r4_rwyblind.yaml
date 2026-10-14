@@ -1,0 +1,44 @@
+# A 3 h DELIVERABLE CANDIDATE (findings 10.35, rule R: this rung or op_hl3_r3_rwyblind, without the NM history;
+# forward twin op_hl3_r4_rwyblind_fwd). The deliverable of this lead since the forward check of 10 Oct (findings
+# 10.31); on the schedule clock (P = the published schedule, no IOBT, no day of year) since 11 Oct.
+# Runway-blind 3 h rung 4: three hours ahead the departure runway is the outcome of a runway configuration that is
+# not yet in use (2025: the recorded runway matches the airport's dominant departure runway of the anchor hour on
+# 60.5 %, of the own takeoff hour on 75.4 %), so every own-runway input is dropped (prc/features/_long_tiers.py,
+# tag own_runway: stand/runway keys with the runway, the route to the runway, head- and crosswind, the schedule demand
+# and the NM history on the own runway). Airport, pier and stand inputs stay. No archive: fitted on Jan-Oct and
+# validated on Nov+Dec, the 24 h archive rung lost 3.1 s of MAE against its archive-free twin, the archive's
+# seasonal-holdout gain coming from records of later months. refit_on_all is on for the final dataset: run WITHOUT
+# --no-test to refit; with --no-test it is a holdout run like the others.
+extends: op_hl3_r4.yaml
+name: op_hl3_r4_rwyblind
+notes: "long horizon 3 h r4, runway-blind (deliverable candidate, rule R)"
+features:
+  drop_columns:
+    - takeoff_epoch
+    - runway
+    - apt_runway
+    - apt_stand_runway
+    - geo_gc_dist_m
+    - geo_rwy_matched
+    - geo_rwy_length_m
+    - geo_rwy_threshold_bearing_deg
+    - geo_route_dist_m
+    - geo_route_ratio
+    - geo_route_rwy_crossings
+    - geo_route_found
+    - op_hl3_hist_rwy_b3h_n
+    - op_hl3_hist_rwy_b3h_anom_mean
+    - op_hl3_hist_rwy_b3h_anom_share5
+    - op_hl3_hist_rwy_b3h_push_delay_mean
+    - op_hl3_hist_rwy_b24h_n
+    - op_hl3_hist_rwy_b24h_anom_mean
+    - op_hl3_hist_rwy_b24h_anom_share5
+    - op_hl3_hist_rwy_b24h_push_delay_mean
+    - op_hl3_wx_headwind_kt
+    - op_hl3_wx_crosswind_kt
+    - op_hl_dem_dep_sched_rwy_w30
+    - op_hl_dem_dep_sched_rwy_w60
+    - op_hl_dem_arr_sched_rwy_w30
+    - op_hl_dem_arr_sched_rwy_w60
+model:
+  refit_on_all: true

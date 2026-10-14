@@ -1,0 +1,8 @@
+# Priority 2: r1 (record, plan, layout; no weather) on the Feb+Dec 2025 holdout: the weather-free twin of
+# op_h1_r2_winter, so that op_h1_r1_winter -> op_h1_r2_winter is weather's value on the holdout that holds the snow
+# days (Jan+Jul 2025 has none). Read rmse_disrupted with n_disrupted_val.
+extends: op_h1_r1.yaml
+name: op_h1_r1_winter
+notes: "operational H1 r1 on the Feb+Dec 2025 holdout"
+validation:
+  holdout_months: ["2025-02", "2025-12"]

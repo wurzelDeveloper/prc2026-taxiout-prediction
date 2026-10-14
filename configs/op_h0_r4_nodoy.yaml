@@ -1,0 +1,7 @@
+# The H0 comparator of the H1 deliverable (findings 10.35; LAB, 2025 only): op_h0_r4 without the day of year, as every
+# deliverable (op_h1_r4_nodoy), so that H1 against H0 differs by the moment alone. Holdout only (--no-test).
+extends: op_h0_r4.yaml
+name: op_h0_r4_nodoy
+notes: "operational H0 r4 (lab) without the day-of-year column"
+features:
+  drop_columns: [takeoff_epoch, op_h0_day_of_year]

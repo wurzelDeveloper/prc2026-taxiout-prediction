@@ -1,0 +1,28 @@
+# exp031 plus `wake_queue`: the ICAO wake minimum to the previous takeoff on the runway and the slack
+# against it, and the continuous runway queue the takeoff belongs to (position, age, followers, length).
+# A flight cannot have waited at the holding point longer than its queue has lasted, so the queue's age
+# bounds the runway wait from above. Residual test on exp031's holdout: queue age and position move the
+# bulk residual by ~20 s from the lowest to the highest decile; the wake slack alone shows nothing,
+# `runway_sequence` already names the preceding wake. Judged on the bulk metric (rows with y < 3600,
+# seed noise +-0.15 s).
+extends: exp031_final_winter.yaml
+name: wake_queue
+notes: 'exp031 + wake_queue'
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - wake_queue

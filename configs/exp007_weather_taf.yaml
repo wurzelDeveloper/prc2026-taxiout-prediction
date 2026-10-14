@@ -1,0 +1,19 @@
+# exp006 plus forecast weather: the TAF in force at takeoff, the planning TAF
+# (issued >= 6 h before) with the weather it missed, and the METAR TREND.
+# Needs the weather tables: `python -m prc fetch-weather`.
+extends: exp006_weather.yaml
+name: catboost_weather_taf
+notes: "exp006 + group:weather_fcst (TAF now / planning TAF + surprise / METAR TREND)"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:weather
+    - group:weather_fcst
+  exclude: []

@@ -1,0 +1,11 @@
+# exp061 (per-airport regressors, border_count 254, proxy anchor at Amsterdam only + NM join window) trained longer:
+# learning rate 0.08 -> 0.04, round cap 4,000 -> 8,000, early-stopping patience 200 -> 400. Weight 0.10 (two seeds) in
+# the submitted base stack; the fifth retrained member (findings 10.22, 10.24).
+extends: exp061_lean2_window_b254_eham_anchor.yaml
+name: lean2_window_b254_eham_anchor_long
+notes: "exp061 at lr 0.04, iteration cap 8000, od_wait 400 (base trained longer)"
+model:
+  params:
+    learning_rate: 0.04
+    iterations: 8000
+    od_wait: 400

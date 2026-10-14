@@ -1,0 +1,10 @@
+# exp065 (lean2 + NM join window, per-airport regressors, trained longer) with depth 9 instead of 7: the project
+# owner's request of 8 Oct 2026 to retrain the best configuration with an increased depth. Single change: the
+# regressor's tree depth (the mixture classifier keeps its own defaults). Refit on all twelve months for a candidate
+# that swaps the deeper members into v69's base on the rows no ADS-B stage corrects (findings 10.30).
+extends: exp065_lean2_window_long.yaml
+name: lean2_window_deep
+notes: "exp065 at depth 9 (best configuration, increased depth)"
+model:
+  params:
+    depth: 9

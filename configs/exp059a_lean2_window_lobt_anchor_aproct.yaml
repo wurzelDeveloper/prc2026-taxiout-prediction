@@ -1,0 +1,8 @@
+# exp059_lean2_window_lobt_anchor on a 2025-04+2025-10 holdout: a base member for the ADS-B stage's extra training days (findings 10.18: full-year extension)
+extends: exp059_lean2_window_lobt_anchor.yaml
+name: lean2_window_lobt_anchor_aproct
+notes: "exp059_lean2_window_lobt_anchor on 2025-04+2025-10"
+validation:
+  holdout_months: ["2025-04", "2025-10"]
+model:
+  refit_on_all: false

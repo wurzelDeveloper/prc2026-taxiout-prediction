@@ -1,0 +1,11 @@
+# Long-horizon rung 2 at 24 h (a = P - 24 h): r0 + the airport layout (OSM stands and routes; runway parts O*) + the
+# weather known at the anchor: the METAR in force at a - 5 min and the windows ending there (persistence), and the
+# TAF issued at or before a whose validity covers P (prevailing and worst case, the following hour, its age). No ERA5.
+# Holdout only, no refit.
+extends: op_base.yaml
+name: op_hl24_r2
+notes: "long horizon 24 h r2: + layout and weather forecast"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_hl_static, op_hl_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_hl24_wx]

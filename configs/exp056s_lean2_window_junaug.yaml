@@ -1,0 +1,8 @@
+# exp056 on a Jun+Aug 2025 holdout: a base member for the ADS-B stage's extra training days (findings 10.18)
+extends: exp056_lean2_window.yaml
+name: lean2_window_junaug
+notes: "exp056 on Jun+Aug 2025"
+validation:
+  holdout_months: ["2025-06", "2025-08"]
+model:
+  refit_on_all: false

@@ -1,0 +1,12 @@
+# Long-horizon rung 4 at 3 h: + the recent history: NM's taxi-out reading (takeoff - AOBT_3 against its fit-rows median,
+# month-out by the schedule's month) and the push delay (AOBT_3 minus the schedule) of OTHER flights that took off in
+# the 3 h / 24 h before the anchor, per airport and own runway (fold-dependent, like op_h1_nm). Holdout only, no refit.
+extends: op_base.yaml
+name: op_hl3_r4
+notes: "long horizon 3 h r4: + recent NM history"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_hl_static, op_hl_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_hl3_wx,
+            op_hl_demand,
+            op_hl3_hist]

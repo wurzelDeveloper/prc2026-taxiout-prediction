@@ -1,0 +1,23 @@
+# exp023b (wide regime mixture) plus the airport-geometry group, re-measured on a
+# holdout whose tail is handled. exp013 judged geometry "within noise" on the raw base,
+# but that verdict was read on `rmse`, where the tail rows carry most of the squared
+# error: a 5 s gain on the bulk moves a 430 headline by about 2 s, the noise floor.
+# Read `rmse_ex_dayoffset` and the per-airport columns here, not `rmse`.
+#
+# Needs `fetch-geometry`.
+extends: exp023b_raw_per_airport_mixture_wide.yaml
+name: mixture_geometry
+notes: "exp023b + group:geometry, judged on rmse_ex_dayoffset"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:stale
+    - group:geometry
+  exclude: []

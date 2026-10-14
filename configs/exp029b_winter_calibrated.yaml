@@ -1,0 +1,13 @@
+# exp029_calibrated's calibration on the winter holdout, so the calibration is
+# read on both holdouts like every block of the sweep. Read `rmse_ex_dayoffset`
+# and `rmse_disrupted` against exp029_winter_check's three seeds.
+extends: exp029_winter_check.yaml
+name: winter_calibrated
+notes: "exp029_winter_check with isotonic calibration of the regime classifier per delta band"
+
+model:
+  mixture:
+    calibration: isotonic
+    calibration_delta_bands: [7200, 14400, 28800]
+    calibration_folds: 3
+    calibration_min_rows: 200

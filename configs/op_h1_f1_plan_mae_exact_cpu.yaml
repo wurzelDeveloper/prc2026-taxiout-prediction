@@ -1,0 +1,16 @@
+# The median member of the adopted H1 deliverable (findings 10.37, rule M re-run): op_h1_f1_plan with the settings of
+# H1's rule M member (op_h1_r4_nodoy_mae_exact + _cpu): MAE loss and early stopping with exact leaves, plain
+# boosting, on the CPU (CatBoost's GPU fails with exact leaves: CUDA error 700), refitted on all twelve months. Its
+# predictions replace the calibrated median (y_med) only if rule M passes (lab/op_deliver.py --median-config).
+extends: op_h1_f1_plan.yaml
+name: op_h1_f1_plan_mae_exact_cpu
+notes: "F1 median member: MAE loss with exact leaves on the CPU, refitted (rule M for the adopted H1)"
+model:
+  refit_on_all: true
+  params:
+    loss_function: MAE
+    eval_metric: MAE
+    leaf_estimation_method: Exact
+    boosting_type: Plain
+    iterations: 16000
+    task_type: CPU

@@ -1,0 +1,11 @@
+# exp031 (exp030 + the winter blocks; bulk 222.33 against exp030's 223.49) with exp034's mixture: the
+# universe from 30 min schedule deltas and a 60 s label tolerance (bulk 219.68 against 223.49 on exp030's
+# features; LIRF July 506 -> 474). The weather gain sits at EGLL/LTFM/LFPG in January, the mixture's at
+# LIRF, so the two should add. This is the base the 2026-09-24 additions are measured on.
+extends: exp031_final_winter.yaml
+name: winter_mixture30
+notes: 'exp031 + mixture universe from 30 min deltas, 60 s tolerance'
+model:
+  mixture:
+    min_base_sec: 1800
+    tol_sec: 60

@@ -1,0 +1,26 @@
+# exp031 plus ERA5 reanalysis at takeoff (`era5_surface`, `python -m prc fetch-era5`): snow depth,
+# snowfall over 3 h and 24 h, freezing precipitation, ground temperature, the 12 h minimum and frost
+# hours. The METARs say whether it snows, not how much lies on the ground or whether the night frosted
+# the parked fleet; January 2026 held several times the snow of any 2025 month (EHAM 13 cm on the
+# ground against at most 3 cm in 2025, Madrid 12 cm of snowfall against almost none).
+extends: exp031_final_winter.yaml
+name: final_era5
+notes: 'exp031 + era5_surface'
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface

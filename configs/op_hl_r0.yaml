@@ -1,0 +1,16 @@
+# Long-horizon rung 0, both leads (owner's direction of 9 Oct, findings 10.31): what is known a few hours or a day
+# before the planned movement. P = the planned off-block = the published schedule (findings 10.35: never the IOBT,
+# which carries most of a late flight's delay and has no filing time in the data, nor NM's last known off-block time),
+# anchor a = P - lead (prc/features/_horizon.py). r0 = the flight's own record and plan: airport, stand/runway keys,
+# aircraft and operator identity, the calendar at P in local time (no day of year), whether a stand is allocated.
+# Every input is plan data, known at either anchor, so r0 is the same model at 3 h and 24 h: this one config is r0 of
+# both ladders (op_hl3_r2.., op_hl24_r2..). The ladder r0..r4(_arch) reads the flight's own recorded runway and stand,
+# so it is an O* upper bound (prc/features/_long_tiers.py); the deliverables are the runway-blind refit rungs
+# op_hl3_r3_rwyblind or op_hl3_r4_rwyblind and op_hl24_r3_rwyblind or op_hl24_r4_rwyblind (rule R of findings 10.35).
+# Read on the NM-joined OP population: the missing level of the _flt columns marks the challenge's NM join (tier C).
+# Holdout only, no refit.
+extends: op_base.yaml
+name: op_hl_r0
+notes: "long horizon r0 (3 h and 24 h): record and plan at the planned off-block"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_hl_static, op_hl_plan]

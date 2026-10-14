@@ -1,0 +1,14 @@
+# exp037 (v10, board 306.6) without the four time-position columns. `takeoff_epoch` (core_keys) and
+# `days_since_epoch` put every 2026 row beyond the end of the training range, so each split on them sends
+# all of 2026 down the late-December-2025 branch; `day_of_year` and `week_of_year` let the refit copy a 2025
+# date onto the same 2026 date. The Jan+Jul holdout sits inside the range and cannot see it (findings 8.2,
+# 9.2); in exp037 the four hold ~0.9 % of the regressor's gain, so the move may be small. Board test.
+extends: exp037_final_era5_mixture.yaml
+name: final_nodates_mixture
+notes: 'exp037 without takeoff_epoch, days_since_epoch, day_of_year, week_of_year'
+features:
+  drop_columns:
+  - takeoff_epoch
+  - days_since_epoch
+  - day_of_year
+  - week_of_year

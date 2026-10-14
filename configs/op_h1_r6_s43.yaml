@@ -1,0 +1,10 @@
+# Seed floor of R6 on the Jan+Jul 2025 holdout (findings 10.31): op_h1_r6 at seed 43, no refit, no permutation.
+extends: op_h1_r6.yaml
+name: op_h1_r6_s43
+notes: "op_h1_r6 seed 43 (seed floor)"
+seed: 43
+model:
+  refit_on_all: false
+evaluation:
+  permutation:
+    enabled: false

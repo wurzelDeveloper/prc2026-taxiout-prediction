@@ -1,0 +1,9 @@
+# exp048 with a more regularised regressor: depth 6 (7) and l2_leaf_reg 10 (3). A direct lever against fitting
+# 2025's particulars; judged on the forward validation next to the trimming variants.
+extends: exp048_forward_base.yaml
+name: forward_regularised
+notes: "exp048 + depth 6, l2_leaf_reg 10"
+model:
+  params:
+    depth: 6
+    l2_leaf_reg: 10.0

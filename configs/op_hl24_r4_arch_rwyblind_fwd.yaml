@@ -1,0 +1,11 @@
+# Forward check of the archive's value (pair with op_hl24_r4_rwyblind_fwd): the 24 h archive rung fitted on
+# January-October 2025 and validated on November and December, so every archive record a holdout query reads lies
+# before it. No refit.
+extends: op_hl24_r4_arch_rwyblind.yaml
+name: op_hl24_r4_arch_rwyblind_fwd
+notes: "long horizon 24 h r4 + archive, runway-blind, forward holdout (fit Jan-Oct, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

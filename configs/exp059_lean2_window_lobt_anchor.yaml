@@ -1,0 +1,11 @@
+# exp056 (lean2 + join window) with the taxi regressor anchored on NM's last known off-block time: it learns
+# target - (takeoff - LOBT) = LOBT - block, which the join window bounds to +-3,606 s on every matched row, so a
+# flight that took off hours after LOBT (Amsterdam's snow days) is an ordinary target instead of an extreme one.
+# No anchor clip (the window does the bounding); rows without LOBT take the airport median.
+extends: exp056_lean2_window.yaml
+name: lean2_window_lobt_anchor
+notes: "exp056 + regressor anchored on lobt_delta_full"
+model:
+  mixture:
+    regressor_anchor: lobt_delta_full
+    anchor_clip: [-200000.0, 200000.0]

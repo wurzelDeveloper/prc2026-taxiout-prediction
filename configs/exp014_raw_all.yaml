@@ -1,0 +1,20 @@
+# exp005 (raw target, no clip) plus every external group: geometry, METAR, TAF.
+#
+# Needs `fetch-geometry` and `fetch-weather`.
+extends: exp005_catboost_raw_target.yaml
+name: catboost_raw_all
+notes: "exp005 + geometry + weather + weather_fcst"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:weather
+    - group:weather_fcst
+    - group:geometry
+  exclude: []

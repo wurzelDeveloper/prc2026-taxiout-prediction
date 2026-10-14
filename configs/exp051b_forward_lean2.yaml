@@ -1,0 +1,16 @@
+# exp051's block set under the forward validation of exp050b (fit Jan-Oct 2025, validate Nov+Dec): do the four
+# removals of findings 9.19 add up? Two seeds against exp050b's 186.24 / 186.09 (bulk), 199.48 / 198.93 (without
+# wrong-date rows).
+extends: exp050b_forward_lean.yaml
+name: forward_lean2
+notes: "exp050b without nm_proxy_context, stand_runway_target_stats, wx_past, wx_deice_load"
+features:
+  exclude:
+  - stale_target_stats
+  - key_target_stats
+  - stand_geometry
+  - taxi_route
+  - nm_proxy_context
+  - stand_runway_target_stats
+  - wx_past
+  - wx_deice_load

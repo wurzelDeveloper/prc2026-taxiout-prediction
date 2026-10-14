@@ -1,0 +1,11 @@
+# exp059 (per-airport regressors anchored on LOBT + NM join window) trained longer: learning rate 0.08 -> 0.04, round
+# cap 4,000 -> 8,000, early-stopping patience 200 -> 400. Weight 0.20 in the submitted base stack. Queued only if exp065
+# beats exp056 by more than the seed spread (project owner's request, 6 Oct).
+extends: exp059_lean2_window_lobt_anchor.yaml
+name: lean2_window_lobt_anchor_long
+notes: "exp059 at lr 0.04, iteration cap 8000, od_wait 400 (base trained longer)"
+model:
+  params:
+    learning_rate: 0.04
+    iterations: 8000
+    od_wait: 400

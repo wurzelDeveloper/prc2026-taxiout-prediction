@@ -1,0 +1,7 @@
+# exp050 (the lean set) with deeper trees: depth 9 (7). A differently built member for the wide blends (findings 9.20).
+extends: exp050_lean.yaml
+name: lean_deep
+notes: "exp050 + depth 9"
+model:
+  params:
+    depth: 9

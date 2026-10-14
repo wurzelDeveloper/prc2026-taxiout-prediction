@@ -1,0 +1,22 @@
+# Every feature group: exp008 (geometry) plus the METAR and TAF blocks of exp007.
+#
+# Needs both external data sets:
+#   python -m prc fetch-weather
+#   python -m prc fetch-geometry
+extends: exp008_geometry.yaml
+name: catboost_all
+notes: "exp008 + group:weather + group:weather_fcst"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:weather
+    - group:weather_fcst
+    - group:geometry
+  exclude: []

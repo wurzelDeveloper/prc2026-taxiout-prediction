@@ -1,0 +1,44 @@
+# A 24 h DELIVERABLE CANDIDATE (findings 10.35, rule R: this rung or op_hl24_r3_rwyblind, without the NM history;
+# forward twin op_hl24_r4_rwyblind_fwd). The deliverable of this lead since the forward check of 10 Oct (findings
+# 10.31); on the schedule clock (P = the published schedule, no IOBT, no day of year) since 11 Oct.
+# Runway-blind 24 h rung 4: a day ahead the departure runway is the outcome of a runway configuration that is not yet
+# in use (2025: the recorded runway matches the airport's dominant departure runway of the anchor hour a = P - 24 h on
+# 56.4 %), so every own-runway input is dropped (prc/features/_long_tiers.py, tag own_runway: stand/runway keys with
+# the runway, the route to the runway, head- and crosswind, the schedule demand and the NM history on the own runway).
+# Airport, pier and stand inputs stay. No archive: its forward twin op_hl24_r4_rwyblind_fwd beat
+# op_hl24_r4_arch_rwyblind_fwd by 3.1 s of MAE (213.3 against 216.4 on Nov+Dec, fitted on Jan-Oct; IOBT clock). As
+# op_h1_r4_rwyblind. refit_on_all is on for the final dataset: run WITHOUT --no-test to refit; with --no-test it is a
+# holdout run like the others.
+extends: op_hl24_r4.yaml
+name: op_hl24_r4_rwyblind
+notes: "long horizon 24 h r4, runway-blind (deliverable candidate, rule R)"
+features:
+  drop_columns:
+    - takeoff_epoch
+    - runway
+    - apt_runway
+    - apt_stand_runway
+    - geo_gc_dist_m
+    - geo_rwy_matched
+    - geo_rwy_length_m
+    - geo_rwy_threshold_bearing_deg
+    - geo_route_dist_m
+    - geo_route_ratio
+    - geo_route_rwy_crossings
+    - geo_route_found
+    - op_hl24_wx_headwind_kt
+    - op_hl24_wx_crosswind_kt
+    - op_hl_dem_dep_sched_rwy_w30
+    - op_hl_dem_dep_sched_rwy_w60
+    - op_hl_dem_arr_sched_rwy_w30
+    - op_hl_dem_arr_sched_rwy_w60
+    - op_hl24_hist_rwy_b3h_n
+    - op_hl24_hist_rwy_b3h_anom_mean
+    - op_hl24_hist_rwy_b3h_anom_share5
+    - op_hl24_hist_rwy_b3h_push_delay_mean
+    - op_hl24_hist_rwy_b24h_n
+    - op_hl24_hist_rwy_b24h_anom_mean
+    - op_hl24_hist_rwy_b24h_anom_share5
+    - op_hl24_hist_rwy_b24h_push_delay_mean
+model:
+  refit_on_all: true

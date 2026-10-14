@@ -1,0 +1,27 @@
+# H0 rung 4 + ADS-B (LAB, 2025 only): can public ADS-B replace the airport's own off-block feed at the push? op_h0_r4 +
+# op_h0_adsb (the surface picture at the recorded off-block - 30 s); compare with op_h0_r5 (the feed) and op_h0_r4 (neither).
+# Holdout only (--no-test). Permutation on. The fit blanks the block on a quarter of its (airport, day) groups, as R6.
+# Run it only after the own-contamination audit passed at H0 (lab/op_adsb_audit.py; critique F2): lab/op_ladder_run.sh
+# refuses it without the ADS-B gate marker.
+extends: op_base.yaml
+name: op_h0_r4_adsb
+notes: "operational H0 r4 (lab) + public ADS-B surface picture at pushback"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h0_static, op_h0_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h0_wx,
+            op_h0_traffic,
+            op_h0_nm,
+            op_h0_adsb]
+  drop_columns: [takeoff_epoch, op_h0_adsb_cov_tko_n_120, op_h0_adsb_cov_ref_n_120, op_h0_adsb_cov_mov_ratio_120,
+                 op_h0_adsb_cov_mov_ratio_30, op_h0_adsb_cov_mov_ratio_10, op_h0_adsb_cov_act_ratio_5,
+                 op_h0_adsb_cov_taxi_share_120, op_h0_adsb_cov_push_share_360, op_h0_adsb_cov_taxi_ratio_120,
+                 op_h0_adsb_cov_hold_ratio_120, op_h0_adsb_cov_ok, op_h0_adsb_cov_taxi_ok, op_h0_adsb_cov_hold_ok,
+                 op_h0_adsb_cov_stand_ok]
+model:
+  block_dropout:
+    op_h0_adsb: 0.25
+evaluation:
+  permutation:
+    enabled: true
+    repeats: 3

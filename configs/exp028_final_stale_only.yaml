@@ -1,0 +1,29 @@
+# The board's answer to exp027 (v5, 337.3 against v4's 329.0): 2026's untyped Rome rows
+# with a 12 h+ schedule delta are stale schedules, not wrong-date records and not
+# genuine taxis. Only that reading fits the size of v5's loss; one wrong-date row among
+# them would have doubled it. The right prediction for them is therefore the delta
+# itself, which v4 (hedging 40 % of a day) and v5 (hedging toward a taxi) both miss by
+# about 6,700 MSE, ~10 s of board RMSE.
+#
+# This config prices them at the delta: original data, the day-offset regime off, and
+# the fifteen wrong-date rows out of the fit (the cleaning rule), so the classifier sees
+# only stale rows at long deltas and the regressor never sees a day-long target. The
+# 2025 holdout, which does hold seven wrong-date rows, will read worse than exp024 by
+# construction; the board is the judge.
+extends: exp024_final_mixture.yaml
+name: final_stale_only
+notes: "exp024 with the wrong-date rows out of the fit and the day-offset regime off: long-delta rows priced at the schedule delta"
+
+data:
+  clean:
+    day_offset_tol_sec: 3600
+
+model:
+  mixture:
+    day_offset: false
+    # No early stopping for the classifier: the cleaning rule leaves the holdout's
+    # wrong-date rows in its eval set, and with delta-weighted rows those five
+    # dominate the eval loss and stop it where it refuses to call long deltas stale
+    # (first run: a 45,785 s stale row predicted at 17,984). With a fixed budget the
+    # long-delta stale rows come out at the delta (Rome check: p 0.94-1.0).
+    classifier_eval: false

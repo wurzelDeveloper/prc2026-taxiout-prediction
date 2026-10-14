@@ -1,0 +1,10 @@
+# Forward check of the H1 deliverable (findings 10.35, rule F): op_h1_r4_nodoy fitted on January-October 2025 and
+# validated on November and December, so every reference table a query reads lies before it. No refit.
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_r4_nodoy_fwd
+notes: "op_h1_r4_nodoy, forward holdout (fit Jan-Oct, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

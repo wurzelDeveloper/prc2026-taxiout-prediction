@@ -1,0 +1,18 @@
+# H1 rung 4, the top board-scorable rung and the board run: + NM data of flights already airborne at the anchor
+# (proxy anomaly against a fit-rows median, push delay) and the plan backlog. No NM-push queue.
+# Run WITHOUT --no-test: refit_on_all gives test_predictions.parquet for `prc submit`. Permutation on.
+extends: op_base.yaml
+name: op_h1_r4
+notes: "operational H1 r4: + NM completed readings and plan backlog (board run)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm]
+model:
+  refit_on_all: true
+evaluation:
+  permutation:
+    enabled: true
+    repeats: 3

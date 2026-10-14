@@ -1,0 +1,14 @@
+# Ten per-airport models on exp008's features (exp003's model settings).
+#
+# Geometry is airport-specific by construction, so this is where measured
+# distance and per-airport fitting get to reinforce each other. Compare with
+# exp008 (global) and exp003 (per-airport without geometry).
+extends: exp008_geometry.yaml
+name: catboost_geometry_per_airport
+notes: "per-airport models on exp008's feature set"
+
+model:
+  per_airport: true
+  params:
+    depth: 7
+    iterations: 3000

@@ -1,0 +1,39 @@
+# Sham control of the partner-runway A/B (findings 10.28): exp070 plus `partner_runway_sham`, the partner-runway
+# columns with their rows permuted among Istanbul's paired-runway departures (the indicator, the NaN pattern and the
+# columns' joint distribution kept, the association with the flight's own moment destroyed). Read against exp071
+# (arm B) and exp070 (arm A) on seeds 42/43/44: exp072 = exp071 means the gain is the block's structure, exp072 = exp070
+# means it is the partner traffic. Lab only, never refitted. Lists are replaced, so exp071's list is repeated with the
+# sham block in place of the real one.
+extends: exp070_ltfm_spec_long.yaml
+name: ltfm_spec_long_partner_sham
+notes: "exp070 + partner_runway_sham (A/B sham control, lab only)"
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - dep_live_state
+  - deicing_context
+  - group:geometry
+  - stand_occupancy
+  - wake_queue
+  - delay_stale_stats
+  - partner_runway_sham
+  params:
+    partner_runway_sham:
+      seed: 0
+model:
+  refit_on_all: false

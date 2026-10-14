@@ -1,0 +1,13 @@
+# Forward check of the archive's value (pair with op_hl24_r4_arch_rwyblind_fwd) and of rule R (findings 10.35; pair
+# with op_hl24_r3_rwyblind_fwd): fit on January-October 2025, validate on November and December, so the holdout
+# queries read archive and NM-baseline tables of earlier months only, as the 2026 queries do. The seasonal holdout's
+# tables pool months after Jan and Jul (transductive in time), so its archive gain is mildly optimistic; this pair
+# bounds it. No refit.
+extends: op_hl24_r4_rwyblind.yaml
+name: op_hl24_r4_rwyblind_fwd
+notes: "long horizon 24 h r4 runway-blind, forward holdout (fit Jan-Oct, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

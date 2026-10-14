@@ -1,0 +1,15 @@
+# Same as exp002 but fitted on raw seconds, unclipped.
+#
+# Worth running early. The metric is RMSE, and RMSE here is dominated by a very
+# small tail (targets reach 131,167s). log1p compresses exactly that tail, which
+# is good for stability and potentially bad for the score -- and clipping the
+# training target at 7200s tells the model those flights do not exist.
+#
+# This config is the A/B that settles it rather than guessing.
+extends: exp002_catboost_core.yaml
+name: catboost_raw_target
+notes: "no target transform, no clipping -- A/B against exp002"
+
+target:
+  transform: none
+  clip: null

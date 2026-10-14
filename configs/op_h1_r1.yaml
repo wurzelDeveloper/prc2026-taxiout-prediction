@@ -1,0 +1,7 @@
+# H1 rung 1: + airport layout (OSM stands and taxiway routes, OurAirports runway ends). Runway-keyed parts are O*.
+extends: op_base.yaml
+name: op_h1_r1
+notes: "operational H1 r1: + airport layout"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry]

@@ -1,0 +1,23 @@
+# The public-data variant (critique F13): R2 (schedule and plan, layout, weather) + the ADS-B surface picture, without the
+# airport's movement records (op_h1_traffic) or NM data (op_h1_nm). Its coverage reference is the public schedule of other
+# flights (`coverage_ref: scheduled`), not their recorded movements; the family gates and the snapshot's support table
+# read ADS-B only. The fit blanks the block on a quarter of its (airport, day) groups, as R6. No refit, no permutation.
+extends: op_base.yaml
+name: op_h1_r2_adsb
+notes: "operational H1 r2 + ADS-B: schedule, weather, layout and public ADS-B only"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_adsb]
+  params:
+    op_h1_adsb:
+      coverage_ref: scheduled
+  drop_columns: [takeoff_epoch, op_h1_adsb_cov_tko_n_120, op_h1_adsb_cov_ref_n_120, op_h1_adsb_cov_mov_ratio_120,
+                 op_h1_adsb_cov_mov_ratio_30, op_h1_adsb_cov_mov_ratio_10, op_h1_adsb_cov_act_ratio_5,
+                 op_h1_adsb_cov_taxi_share_120, op_h1_adsb_cov_push_share_360, op_h1_adsb_cov_taxi_ratio_120,
+                 op_h1_adsb_cov_hold_ratio_120, op_h1_adsb_cov_ok, op_h1_adsb_cov_taxi_ok, op_h1_adsb_cov_hold_ok,
+                 op_h1_adsb_cov_stand_ok]
+model:
+  block_dropout:
+    op_h1_adsb: 0.25

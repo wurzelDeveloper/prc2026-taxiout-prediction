@@ -1,0 +1,13 @@
+# exp056 (lean2 + NM join window in the mixture, per-airport regressors) trained longer: half the learning rate
+# (0.08 -> 0.04), twice the round cap (4,000 -> 8,000) and twice the early-stopping patience (200 -> 400). The refit on
+# all twelve months keeps its planned rounds (folds' best iteration x row ratio), so it trains longer too. Project
+# owner's request of 6 Oct 2026: test whether a longer-trained base helps; bar = beat the mean of exp056's two seeds
+# (260.45 / 261.58 without wrong-date rows, 214.38 / 215.48 bulk) by more than their 0.6 s spread.
+extends: exp056_lean2_window.yaml
+name: lean2_window_long
+notes: "exp056 at lr 0.04, iteration cap 8000, od_wait 400 (base trained longer)"
+model:
+  params:
+    learning_rate: 0.04
+    iterations: 8000
+    od_wait: 400

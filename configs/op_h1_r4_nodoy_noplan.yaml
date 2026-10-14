@@ -1,0 +1,13 @@
+# The O* bound of the H1 deliverable (findings 10.35): the anchor is 15 min before the LAST filed off-block time
+# (IOBT, which equals LOBT on 99.45 % of the NM-matched 2025 departures; the data hold no filing time), so the planned
+# delay (plan minus schedule) and the backlog of other flights planned off by the anchor assume that plan is known 15 min
+# ahead, as the A-CDM TOBT is. This rung drops those four columns: what the deliverable owes to the filed plan beyond
+# its anchor. Holdout only.
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_r4_nodoy_noplan
+notes: "op_h1_r4_nodoy without the planned delay and the plan backlog"
+features:
+  drop_columns: [takeoff_epoch, op_h1_day_of_year, op_h1_plan_minus_sched_min, op_h1_backlog_apt, op_h1_backlog_rwy,
+                 op_h1_backlog_pier]
+model:
+  refit_on_all: false

@@ -1,0 +1,12 @@
+# exp043 (v13; three-seed blend v15 = board 304.85) with the stale classifier's row weights aligned to the hedge's
+# cost. A universe row's expected hedging cost is p(1 - p)(base - taxi)^2 (findings 9.11); the classifier was
+# weighted by the candidate delta to the first power, so the rows where a wrong regime costs the most counted
+# linearly. Power 2 matches the square. The weight depends on features only, so the probabilities stay
+# calibrated in principle; judged by the 2026 hedging cost (`hedging.rank_refit`) next to the holdout's `ece`,
+# then by the board.
+extends: exp043_final_screen.yaml
+name: classifier_delta2
+notes: "exp043 + classifier_weight_power 2"
+model:
+  mixture:
+    classifier_weight_power: 2

@@ -1,0 +1,17 @@
+.env
+.venv/
+data/
+data_*/
+__pycache__/
+*.part
+.ipynb_checkpoints/
+
+# pipeline outputs
+cache/
+runs/
+submissions/
+configs/_generated/
+*.egg-info/
+.pytest_cache/
+catboost_info/
+lab/*.out

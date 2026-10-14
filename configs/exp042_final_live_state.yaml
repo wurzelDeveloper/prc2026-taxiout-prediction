@@ -1,0 +1,31 @@
+# Submission candidate of 2026-09-24 (evening): exp037 (v10, board 306.6) plus the two winter winners of the
+# Feb+Dec holdout (findings 9.6/9.7; exp040 = exp037 on Feb+Dec: bulk 189.7, without wrong-date rows 234.4,
+# disrupted 668.2):
+# - dep_live_state (the other departures' NM taxi-out anomaly around the takeoff): bulk 188.4, 230.9, 650.5;
+# - deicing_context (cold-soaked aircraft under frost, snow, de-icing; the pad queue): bulk 189.0, 232.1, 647.7.
+# deice_location (de-icing uplift per pier) gained nothing on the GPU (189.6, 234.5, 681.8) and stays out.
+# Its Jan+Jul folds are the do-no-harm check against exp037 s42 (bulk 217.68, without wrong-date rows 268.2).
+# refit_on_all is inherited: a single-seed train without --no-test refits and writes test predictions.
+extends: exp037_final_era5_mixture.yaml
+name: final_live_state
+notes: "exp037 + dep_live_state + deicing_context: submission candidate"
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - dep_live_state
+  - deicing_context

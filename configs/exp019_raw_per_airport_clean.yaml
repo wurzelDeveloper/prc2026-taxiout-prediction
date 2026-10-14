@@ -1,0 +1,17 @@
+# exp015 (raw target, per-airport CatBoost) with exp016's full rule set: impossible rows
+# (below 30 s off a helicopter pad, above 2 h, wrong-date) leave every fold's fit.
+#
+# On the global raw model the same rules cost 116 s of honest RMSE (exp016 549 vs exp005
+# 430) while improving the unflagged rows by 21 s: the >2 h rows are the LIRF untyped
+# segment, whose 2026 twins are scored. Measured here on the per-airport model for
+# completeness; `rmse` (all rows) decides, `rmse_clean` only compares with exp016.
+extends: exp015_raw_per_airport.yaml
+name: catboost_raw_per_airport_clean
+notes: "exp015 + min30/max7200/day3600 dropped from the fit"
+
+data:
+  clean:
+    min_taxi_sec: 30
+    max_taxi_sec: 7200
+    day_offset_tol_sec: 3600
+    drop_from_fit: true

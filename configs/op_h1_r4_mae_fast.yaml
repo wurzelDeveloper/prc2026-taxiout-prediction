@@ -1,0 +1,10 @@
+# The MAE-loss variant of r4 at a learning rate that converges: op_h1_r4_mae (lr 0.08) hit its 8,000-round cap with the
+# eval MAE still falling (findings 10.27), so it was under-trained and is not reported. MAE's gradient is a constant
+# sign, so the loss needs a larger step. Holdout only, never on the board.
+extends: op_h1_r4_mae.yaml
+name: op_h1_r4_mae_fast
+notes: "operational H1 r4 with MAE loss at lr 0.25, cap 30,000"
+model:
+  params:
+    learning_rate: 0.25
+    iterations: 30000

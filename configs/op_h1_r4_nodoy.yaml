@@ -1,0 +1,15 @@
+# The H1 deliverable (findings 10.31, 10.35): op_h1_r4 without op_h1_day_of_year, which maps Feb-Jun 2026 onto 2025
+# dates (Easter fell on 20 Apr 2025 and 5 Apr 2026; Whit Monday on 9 Jun 2025 and 25 May 2026). Hour, minute, weekday,
+# month and the scheduled hour stay. Refitted on all twelve months for the final dataset (three seeds, `--seeds 3
+# --keep-test`, averaged); the learning rate is rule L's choice (findings 10.35: op_h1_r4_nodoy_lr04 replaces this one
+# only if it passes).
+extends: op_h1_r4.yaml
+name: op_h1_r4_nodoy
+notes: "op_h1_r4 without the day-of-year column (the H1 deliverable)"
+features:
+  drop_columns: [takeoff_epoch, op_h1_day_of_year]
+model:
+  refit_on_all: true
+evaluation:
+  permutation:
+    enabled: false

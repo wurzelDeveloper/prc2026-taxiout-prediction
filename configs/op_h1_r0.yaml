@@ -1,0 +1,8 @@
+# H1 rung 0: the flight's own record and plan at 15 min before the planned off-block (IOBT, else LOBT, else
+# schedule). Airport, stand/runway keys (runway O*), aircraft and operator identity, calendar at the anchor,
+# planned minus schedule. No frame-wide frequency counts (stand_runway_frequency, operator_presence: transductive).
+extends: op_base.yaml
+name: op_h1_r0
+notes: "operational H1 r0: record and plan"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan]

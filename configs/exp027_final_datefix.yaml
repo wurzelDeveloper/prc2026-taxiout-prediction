@@ -1,0 +1,21 @@
+# The user's test: assume the fifteen wrong-date rows are pure data errors that do not
+# recur in 2026. Trained on a copy of the competition files in which those block times
+# are moved forward by their whole days (`PRC_DATA_DIR=<copy>`, see prc/paths.py), so the
+# rows become ordinary taxis, and with the day-offset regime off: the model then prices
+# a 2026 Rome row with a 12 h+ schedule delta at the delta itself (stale) instead of
+# 0.6 x delta + 0.4 x a day. Eleven such rows exist in 2026; if none of them is a
+# wrong-date row the board gains ~8,000 MSE (329 -> ~316), if several are it loses
+# about the same. The holdout of this run is not comparable with the others: its seven
+# wrong-date rows are corrected too.
+#
+# `data.version` partitions the feature cache, which is shared with the real data.
+extends: exp024_final_mixture.yaml
+name: final_datefix
+notes: "exp024 on the date-corrected training copy (PRC_DATA_DIR), day-offset regime off; board test of the hypothesis"
+
+data:
+  version: datefix
+
+model:
+  mixture:
+    day_offset: false

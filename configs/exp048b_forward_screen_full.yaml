@@ -1,0 +1,11 @@
+# exp044 (every built block; v14 = board 309.04, 2.9 s worse than exp043's v13 although its Jan+Jul holdout was
+# better) under the forward validation of exp048. If this validation ranks it below exp048, as the board did, it
+# is the judge for the trimming.
+extends: exp044_final_screen_full.yaml
+name: forward_screen_full
+notes: "exp044 under forward_holdout (fit Jan-Oct 2025, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

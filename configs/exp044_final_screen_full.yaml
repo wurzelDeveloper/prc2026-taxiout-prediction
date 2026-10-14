@@ -1,0 +1,14 @@
+# Submission candidate of 2026-09-25: the full screen set (exp041 = exp037 + all 17 unused blocks + dep_live_state
+# + deice_location) with refit. exp041 on Jan+Jul, seed 42: bulk 216.05, without wrong-date rows 267.5 (exp042
+# 217.93 / 269.3). Trimming it to the blocks with a positive permutation (exp043) lost the gain (bulk 217.8), so
+# the measured set goes in whole (findings 9.8).
+extends: exp041_screen_unused.yaml
+name: final_screen_full
+notes: "exp041's full block set with refit: submission candidate"
+
+model:
+  refit_on_all: true
+
+evaluation:
+  permutation:
+    enabled: false

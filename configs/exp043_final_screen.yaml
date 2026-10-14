@@ -1,0 +1,34 @@
+# Submission candidate of 2026-09-25: exp042 (v12, board 306.99) plus the unused blocks the screen found useful
+# (findings 9.8). exp041 (exp037 + all 17 unused blocks) on Jan+Jul, seed 42: bulk 216.05 against exp042's 217.93,
+# without wrong-date rows 267.5 against 269.3, NM-unmatched bulk 644 against 673. Block permutation (holdout RMSE
+# rise when shuffled): delay_stale_stats +75 (+-11), stand_occupancy +6.4, taxi_route +3.1, stand_geometry +2.8,
+# wake_queue +2.5, taxi_distance +0.6 (kept with its group). Left out, zero or negative: zone_load, deice_location,
+# flight_number_context, traffic_deviation, pier_pushback, stale_day_context, taf_planning, wx_trend; taf_now
+# (+1.0 +-1.5) is noise. Its Jan+Jul folds measure the trimmed set; refit_on_all is inherited.
+extends: exp042_final_live_state.yaml
+name: final_screen
+notes: "exp042 + geometry, stand_occupancy, wake_queue, delay_stale_stats: submission candidate"
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - dep_live_state
+  - deicing_context
+  - group:geometry
+  - stand_occupancy
+  - wake_queue
+  - delay_stale_stats

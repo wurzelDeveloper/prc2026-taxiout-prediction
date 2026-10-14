@@ -1,0 +1,25 @@
+# exp030 (board 311.8, v9) plus the two winter blocks the 2026 sweep kept out only for losing
+# 0.8-1.0 s on the Jan+Jul holdout: wx_deice_load (winter -8.4 s, winter disrupted -51 s) and
+# arrival_conditions (-3.8 / -38). exp030 gained 5.2 s on the board with no gain on Jan+Jul, so
+# that holdout is blind to the winter side, and January 2026 had snow days Jan+Jul 2025 lacks
+# (findings 7.3, 7.5b). The board is the judge. refit_on_all is inherited: a submission config.
+extends: exp030_final_context.yaml
+name: final_winter
+notes: 'exp030 + wx_deice_load, arrival_conditions: the winter-side blocks'
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions

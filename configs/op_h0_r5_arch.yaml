@@ -1,0 +1,17 @@
+# H0 rung 5 (LAB, 2025 only: everything at the recorded off-block) + the historical ADS-B archive (op_adsb_archive).
+# r5_arch - r5 = the archive's value at the push. Needs the archive input: python -m prc.adsb.archive (from a worktree
+# add --src <main checkout>/cache/adsb). Holdout only (--no-test); no refit, no permutation.
+extends: op_h0_r5.yaml
+name: op_h0_r5_arch
+notes: "operational H0 r5 (lab) + ADS-B archive"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h0_static, op_h0_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h0_wx,
+            op_h0_traffic,
+            op_h0_nm,
+            op_h0_feed_lab,
+            op_adsb_archive]
+evaluation:
+  permutation:
+    enabled: false

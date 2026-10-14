@@ -1,0 +1,17 @@
+# exp043 (v13; its three-seed blend v15 = board 304.85) with the fit weighted toward the scored months. The test
+# set is January and July 2026; the fit otherwise weighs October like July. Weights: January and July 2.0, their
+# neighbours (December, February, June, August) 1.5, the rest 1.0, normalised to a mean of one
+# (`model.month_weights`; regressor and stale classifier, folds and refit). In the Jan+Jul holdout folds January
+# and July are held out, so the holdout sees only the neighbours' weight; the refit carries the full weighting and
+# the board is the test.
+extends: exp043_final_screen.yaml
+name: month_weights
+notes: "exp043 + month weights: Jan/Jul 2.0, Dec/Feb/Jun/Aug 1.5"
+model:
+  month_weights:
+    1: 2.0
+    7: 2.0
+    12: 1.5
+    2: 1.5
+    6: 1.5
+    8: 1.5

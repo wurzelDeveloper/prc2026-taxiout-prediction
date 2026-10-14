@@ -1,0 +1,14 @@
+# A/B arm A of the partner-runway test (findings 10.28): exp065 (lean2 + NM join window, per-airport regressors,
+# lr 0.04, od_wait 400) trained and validated on Istanbul only. LTFM has no ADS-B coverage, so the base alone predicts
+# its 2026 departures. exp065's LTFM regressor stopped at best iterations 7,879-7,999 of its 8,000 cap, so this arm
+# lifts the cap to 16,000; arm B (exp071) is this config plus the `partner_runway` block and nothing else
+# (`prc features --list` on both shows the one-block difference). Read the pair on seeds 42/43/44 against their own
+# spread; mixture, window, cleaning and refit_on_all are inherited unchanged.
+extends: exp065_lean2_window_long.yaml
+name: ltfm_spec_long
+notes: "exp065 on LTFM only, iteration cap 16000 (A/B arm A, no partner-runway block)"
+data:
+  airports: [LTFM]
+model:
+  params:
+    iterations: 16000

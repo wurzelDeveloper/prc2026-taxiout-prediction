@@ -1,0 +1,32 @@
+# A/B arm B of the partner-runway test: exp070 (exp065 on LTFM only, iteration cap 16,000) plus the `partner_runway`
+# block (traffic on the other runway of Istanbul's close pairs 16L/16R and 17L/17R before takeoff; tier T, findings
+# 10.28). Config lists are replaced, not merged, so exp065's resolved include list is spelled out below with the
+# block appended; the inherited exclude list is unchanged.
+extends: exp070_ltfm_spec_long.yaml
+name: ltfm_spec_long_partner
+notes: "exp070 + partner_runway (A/B arm B)"
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - dep_live_state
+  - deicing_context
+  - group:geometry
+  - stand_occupancy
+  - wake_queue
+  - delay_stale_stats
+  - partner_runway

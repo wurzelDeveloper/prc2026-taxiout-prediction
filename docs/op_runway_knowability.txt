@@ -1,0 +1,8 @@
+
+=== 7. Runway knowability by decision moment (24 h, 3 h on the schedule clock; H1; the own takeoff)
+         coverage  own_eq_dominant_60min  own_in_used_set  mean_distinct_dep_rwys  n_rwys_year  own_eq_dominant_cov  own_in_used_set_cov
+hl24        0.990                  0.534            0.751                   1.835          NaN                0.539                0.759
+hl3         0.901                  0.533            0.758                   1.630          NaN                0.591                0.841
+h1          0.990                  0.663            0.931                   1.825          NaN                0.670                0.941
+takeoff     0.996                  0.706            0.979                   1.863          NaN                0.709                0.983
+

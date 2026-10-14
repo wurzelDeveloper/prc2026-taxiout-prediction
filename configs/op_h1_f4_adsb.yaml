@@ -1,0 +1,26 @@
+# The owner's traffic-awareness test (12 Oct 2026; findings 10.36, rule T pre-registered before any run): the H1
+# deliverable (op_h1_r4_nodoy) plus traffic AFTER the anchor (prc/features/operational_future.py). In operations the
+# airport's arrival, departure and surface managers (AMAN, DMAN, A-SMGCS) plan it; the challenge data hold only what
+# happened, so the F blocks read the other flights' REALISED movements as a stand-in for those plans (tier F, an upper
+# bound for perfect plans, not available as computed). Holdout only (refit_on_all false), seed 42.
+# Step 4, the full concept member: + the public ADS-B surface picture of the other aircraft read at H1 + 15/30/45 min
+# (tier F; coverage-gated, NaN where the own airframe is not identified). As R6, the fit blanks the ADS-B block on a
+# fixed quarter of its (airport, day) groups, so NaN means "no feed" everywhere. Permutation on (each block's value).
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_f4_adsb
+notes: "H1 + plans, records, NM readings and ADS-B after H1 (F; rule T)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm,
+            op_h1_fut_plan, op_h1_fut_rec, op_h1_fut_nm, op_h1_fut_adsb]
+model:
+  refit_on_all: false
+  block_dropout:
+    op_h1_fut_adsb: 0.25
+evaluation:
+  permutation:
+    enabled: true
+    repeats: 3

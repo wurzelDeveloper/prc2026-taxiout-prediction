@@ -1,0 +1,9 @@
+# exp071 (the Istanbul specialist with the partner-runway counts, blended at 0.3 into v69's LTFM rows) with depth 9
+# instead of 7: the project owner's request of 8 Oct 2026. A depth-9 Istanbul specialist (exp064, 3 Oct) was 1.9 s
+# better on LTFM than its depth-7 baseline (findings 10.13). Single change: the regressor's tree depth (findings 10.30).
+extends: exp071_ltfm_spec_long_partner.yaml
+name: ltfm_spec_deep_partner
+notes: "exp071 at depth 9 (Istanbul specialist, increased depth)"
+model:
+  params:
+    depth: 9

@@ -1,0 +1,9 @@
+# exp056 on a Mar+Nov 2025 holdout: a base member for the ADS-B stage's extra training days (findings 10.18; the
+# combined base takes the mean of the three month-pair members, like exp056w/exp059w/exp060w for Feb+Dec)
+extends: exp056_lean2_window.yaml
+name: lean2_window_marnov
+notes: "exp056 on Mar+Nov 2025"
+validation:
+  holdout_months: ["2025-03", "2025-11"]
+model:
+  refit_on_all: false

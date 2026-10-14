@@ -1,0 +1,11 @@
+# Forward check of rule R at 3 h (findings 10.35; pair with op_hl3_r3_rwyblind_fwd): op_hl3_r4_rwyblind fitted on
+# January-October 2025 and validated on November and December, so the holdout queries read NM-baseline tables of
+# earlier months only, as the 2026 queries do. Same blocks and drop list as its rung. No refit.
+extends: op_hl3_r4_rwyblind.yaml
+name: op_hl3_r4_rwyblind_fwd
+notes: "long horizon 3 h r4 runway-blind, forward holdout (fit Jan-Oct, validate Nov+Dec)"
+validation:
+  scheme: forward_holdout
+  holdout_months: ["2025-11", "2025-12"]
+model:
+  refit_on_all: false

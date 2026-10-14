@@ -1,0 +1,69 @@
+# Pier-only sensitivity of the 24 h archive rung (op_hl24_r4_arch_rwyblind): a day ahead a departure's stand
+# depends on where its inbound parks, so the exact stand is O* too. Drops every own_runway and own_stand column of
+# prc/features/_long_tiers.py (stand keys, stand number and suffix, the stand's OSM position and match, has_stand,
+# the archive's stand statistics) and keeps the pier (stand_prefix, the OSM apron zone, the pier demand, the
+# archive's pier statistics). No refit.
+extends: op_hl24_r4_arch_rwyblind.yaml
+name: op_hl24_r4_arch_rwyblind_pier
+notes: "long horizon 24 h r4 + archive, runway- and stand-blind (pier only)"
+features:
+  drop_columns:
+    - takeoff_epoch
+    - geo_stand_east_m
+    - geo_stand_north_m
+    - geo_stand_arp_dist_m
+    - geo_stand_matched
+    - geo_stand_match_source
+    - runway
+    - stand
+    - apt_runway
+    - apt_stand
+    - apt_stand_runway
+    - stand_number
+    - stand_suffix
+    - geo_gc_dist_m
+    - geo_rwy_matched
+    - geo_rwy_length_m
+    - geo_rwy_threshold_bearing_deg
+    - geo_route_dist_m
+    - geo_route_ratio
+    - geo_route_rwy_crossings
+    - geo_route_found
+    - op_hl24_hist_rwy_b3h_n
+    - op_hl24_hist_rwy_b3h_anom_mean
+    - op_hl24_hist_rwy_b3h_anom_share5
+    - op_hl24_hist_rwy_b3h_push_delay_mean
+    - op_hl24_hist_rwy_b24h_n
+    - op_hl24_hist_rwy_b24h_anom_mean
+    - op_hl24_hist_rwy_b24h_anom_share5
+    - op_hl24_hist_rwy_b24h_push_delay_mean
+    - op_hl24_wx_headwind_kt
+    - op_hl24_wx_crosswind_kt
+    - op_hl_dem_dep_sched_rwy_w30
+    - op_hl_dem_dep_sched_rwy_w60
+    - op_hl_dem_arr_sched_rwy_w30
+    - op_hl_dem_arr_sched_rwy_w60
+    - op_hl_has_stand
+    - op_arch_stand_power_share
+    - op_arch_stand_push_dur_s
+    - op_arch_stand_es_dur_s
+    - op_arch_stand_start_8kt_s
+    - op_arch_stand_tau_100_s
+    - op_arch_stand_tau_300_s
+    - op_arch_stand_tau_1000_s
+    - op_arch_sr_power_share
+    - op_arch_sr_push_dur_s
+    - op_arch_sr_es_dur_s
+    - op_arch_sr_start_8kt_s
+    - op_arch_sr_tau_100_s
+    - op_arch_sr_tau_300_s
+    - op_arch_sr_tau_1000_s
+    - op_arch_rwy_power_share
+    - op_arch_rwy_push_dur_s
+    - op_arch_rwy_es_dur_s
+    - op_arch_rwy_start_8kt_s
+    - op_arch_rwy_tau_100_s
+    - op_arch_rwy_tau_300_s
+    - op_arch_rwy_tau_1000_s
+model:
+  refit_on_all: false

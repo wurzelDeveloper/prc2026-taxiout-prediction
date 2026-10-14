@@ -1,0 +1,10 @@
+# The H1 median member (findings 10.35, rule M passed): op_h1_r4_nodoy_mae_exact on the CPU (CatBoost's GPU fails with
+# exact leaves: CUDA error 700), refitted on all twelve months. Its predictions replace the calibrated median (y_med)
+# of the H1 file (lab/op_deliver.py --median-config); the mean (three RMSE seeds) and the P10-P90 band stay.
+extends: op_h1_r4_nodoy_mae_exact.yaml
+name: op_h1_r4_nodoy_mae_exact_cpu
+notes: "H1 median member: MAE loss with exact leaves on the CPU, refitted (rule M)"
+model:
+  refit_on_all: true
+  params:
+    task_type: CPU

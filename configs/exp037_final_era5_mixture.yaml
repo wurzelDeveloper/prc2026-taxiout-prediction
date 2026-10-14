@@ -1,0 +1,25 @@
+# Submission candidate of 2026-09-24: exp036 (exp031's winter blocks + the mixture from 30 min schedule
+# deltas with a 60 s tolerance) plus ERA5 (`era5_surface`). Jan+Jul holdout, seed 42: bulk 217.68 against
+# exp030's 223.49 (v9's config; seed noise +-0.15 s), without wrong-date rows 267.9 against 277.5.
+# refit_on_all is inherited: a single-seed train without --no-test refits and writes test predictions.
+extends: exp036_winter_mixture30.yaml
+name: final_era5_mixture
+notes: 'exp036 + era5_surface: submission candidate'
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface

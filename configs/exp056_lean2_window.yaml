@@ -1,0 +1,10 @@
+# exp051 (lean2) with the NM join window inside the mixture (findings 10.3): every matched target lies within
+# takeoff - LOBT +- 3,606 s. A stale candidate outside the window is invalid, the regressor keeps the matched rows
+# above its 7,200 s cap (80 of the 143 training rows whose window forces a taxi above an hour were dropped by it),
+# and predictions are clipped to the window. The post-hoc clip of v29 took the board 303.02 -> 263.17 (v31).
+extends: exp051_lean2.yaml
+name: lean2_window
+notes: "exp051 + NM join window in the mixture (lobt_delta_full +- 3606)"
+model:
+  mixture:
+    window_column: lobt_delta_full

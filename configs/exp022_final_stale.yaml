@@ -1,0 +1,15 @@
+# Submission run: exp020 (raw target, per-airport CatBoost, the stale-schedule regime as a
+# residual base with per-carrier/destination stale rates) with a refit on all twelve
+# months for the ranking predictions and an iteration cap the detector never reaches.
+#
+# No cleaning rule: the wrong-date rows exp017 dropped are stale blocks, which this model
+# predicts (the rule cost 15 s of honest RMSE on exp017). `prc submit` clips at 200,000 s,
+# not 20,000, so the deliberate multi-hour predictions survive the upload.
+extends: exp020_raw_per_airport_stale.yaml
+name: final_stale
+notes: "exp020 + refit on all months, iteration cap 4000; submission candidate"
+
+model:
+  refit_on_all: true
+  params:
+    iterations: 4000

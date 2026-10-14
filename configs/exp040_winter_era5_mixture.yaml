@@ -1,0 +1,15 @@
+# exp037 (v10, board 306.6) on the Feb+Dec 2025 winter holdout: the base the winter blocks are judged on.
+# Phase A (findings 9.6) passed `dep_live_state` (+2.7 s on the winter residual beyond exp037's blocks) and
+# `deice_location` (+1.2 s), both nothing on Jan+Jul; the only earlier winter-holdout runs are exp028's, which lack
+# exp037's blocks. Variants: `prc ablate -c exp040_winter_era5_mixture.yaml --mode add-to-base --emit-configs
+# --blocks dep_live_state,deice_location,deicing_context`. Read `rmse_bulk`, `rmse_ex_dayoffset` and
+# `rmse_disrupted`. No refit: a check, not a submission.
+extends: exp037_final_era5_mixture.yaml
+name: winter_era5_mixture
+notes: "exp037 on a Feb+Dec 2025 holdout: the months with de-icing and disrupted days"
+
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+
+model:
+  refit_on_all: false

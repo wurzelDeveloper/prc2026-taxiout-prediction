@@ -1,0 +1,10 @@
+# exp051 (lean2) with the mixture's taxi regressor anchored on NM's proxy: it learns target - clip(takeoff -
+# AOBT_3, 0, 7200) and predicts the proxy plus that correction (the per-airport median where AOBT_3 is missing).
+# Two teams above us on the board use an AOBT_3-anchored member (kind-mango -3.7 s with a clock member, Phoenix-Ops
+# a proxy residual throughout); our regressor learns the raw target and approximates the near-identity with steps.
+extends: exp051_lean2.yaml
+name: lean2_anchored
+notes: "exp051 + regressor anchored on aobt3_proxy"
+model:
+  mixture:
+    regressor_anchor: aobt3_proxy

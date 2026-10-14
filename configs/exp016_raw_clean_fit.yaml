@@ -1,0 +1,16 @@
+# exp005 (raw target, no clip) fitted without the impossible rows (exp011's rules).
+#
+# With no clip the fit sees every extreme value, so this is where dropping the
+# genuinely impossible rows (taxi < 30 s off a helicopter pad, > 2 h, a day off)
+# could matter more than it does under exp002's clip. The Rome segment stays in:
+# its 2026 twins are scored, and the raw-target fit is what hedges them.
+extends: exp005_catboost_raw_target.yaml
+name: catboost_raw_clean_fit
+notes: "exp005 minus impossible rows (min 30 s, max 7200 s, day offsets)"
+
+data:
+  clean:
+    min_taxi_sec: 30
+    max_taxi_sec: 7200
+    day_offset_tol_sec: 3600
+    drop_from_fit: true

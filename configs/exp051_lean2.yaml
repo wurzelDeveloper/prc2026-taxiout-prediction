@@ -1,0 +1,21 @@
+# Submission candidate of 2026-09-29: exp050 (v19; three-seed blend v20 = board 304.08) without the blocks the second
+# trimming round found dispensable (findings 9.19). Leave-one-out from exp050b (exp050 under the forward validation,
+# fit Jan-Oct 2025, validate Nov+Dec; base bulk 186.17, without wrong-date rows 199.20; bands +-0.30 / +-0.56):
+# - nm_proxy_context: removing it helps (bulk -0.39, -0.52), no drift (adversarial AUC 0.52);
+# - stand_runway_target_stats: neutral (+0.01 / +0.01) and it separates 2026 from 2025 (AUC 0.59);
+# - wx_past with its dependent wx_deice_load: neutral (-0.03 / -0.04), disrupted days -3.7.
+# calendar, wx_now and era5_surface are kept (findings 9.19). Its Jan+Jul folds are the local check; refit_on_all
+# is inherited.
+extends: exp050_lean.yaml
+name: lean2
+notes: "exp050 without nm_proxy_context, stand_runway_target_stats, wx_past, wx_deice_load"
+features:
+  exclude:
+  - stale_target_stats
+  - key_target_stats
+  - stand_geometry
+  - taxi_route
+  - nm_proxy_context
+  - stand_runway_target_stats
+  - wx_past
+  - wx_deice_load

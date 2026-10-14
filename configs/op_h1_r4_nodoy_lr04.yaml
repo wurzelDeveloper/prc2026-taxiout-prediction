@@ -1,0 +1,11 @@
+# Rule L of findings 10.35: the H1 deliverable at half the learning rate (0.04; cap 20,000 rounds, od_wait 400, as the
+# challenge's longer-trained members exp065-exp067). It replaces op_h1_r4_nodoy only if its seed-42 OP MAE on Jan+Jul
+# 2025 is at most 186.77 s and its OP RMSE at most 279.61 s (lab/op_rules.py L, run in the queue before the refits).
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_r4_nodoy_lr04
+notes: "op_h1_r4_nodoy at learning rate 0.04 (rule L)"
+model:
+  params:
+    learning_rate: 0.04
+    iterations: 20000
+    od_wait: 400

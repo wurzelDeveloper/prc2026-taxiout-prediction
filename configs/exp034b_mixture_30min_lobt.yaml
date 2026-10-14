@@ -1,0 +1,11 @@
+# exp034 with a second stale candidate: the LOBT delta (takeoff minus NM's last known off-block time).
+# Where the LOBT differs from the schedule by 10 min or more and its delta is 30-120 min, the target equals
+# the LOBT delta within a minute on 1.5-2.2 % of rows at EGLL, LEBL, LFPG, LIRF and LTFM (0.2-0.8 % elsewhere),
+# against 6.5-6.8 % for the schedule delta at LIRF and LTFM: a block time recorded as the planned off-block
+# (TOBT) rather than the actual one. Each labelled row takes its nearest candidate.
+extends: exp034_mixture_30min.yaml
+name: mixture_30min_lobt
+notes: 'exp034 + lobt_delta_full as a second mixture base'
+model:
+  mixture:
+    bases: [sched_delta_full, lobt_delta_full]

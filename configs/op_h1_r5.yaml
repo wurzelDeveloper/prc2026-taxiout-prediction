@@ -1,0 +1,12 @@
+# H1 rung 5 (LAB, 2025 only): + the airport's own off-block records of other flights (taxiing-out queue, recent
+# recorded taxi-outs). Holdout only (--no-test): 2026 departure block times are blanked. r5 - r4 = the feed's value.
+extends: op_base.yaml
+name: op_h1_r5
+notes: "operational H1 r5 (lab): + the airport's off-block feed"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm,
+            op_h1_feed_lab]

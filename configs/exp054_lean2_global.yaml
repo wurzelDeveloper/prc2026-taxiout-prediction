@@ -1,0 +1,8 @@
+# exp051 (lean2) with one global CatBoost regressor instead of one per airport (the airport stays a categorical
+# feature). A structurally different member for the blends: the 17-19 run blends of per-airport runs plateaued at
+# 303.0 (findings 9.20). Refit on all months, as exp051.
+extends: exp051_lean2.yaml
+name: lean2_global
+notes: "exp051 with a global regressor (per_airport false)"
+model:
+  per_airport: false

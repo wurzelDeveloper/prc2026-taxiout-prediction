@@ -1,0 +1,23 @@
+# exp034b plus `delay_stale_stats`: fold-safe rates of block times equal to the schedule (and to NM's last
+# off-block time) among the fold's departures 30-120 min late, by carrier, pier and both, per airport.
+# The stale records are a carrier and pier trait (findings 8.2); the classifier gets the rates explicitly
+# instead of learning them from categorical CTRs across ten airports.
+extends: exp034b_mixture_30min_lobt.yaml
+name: mixture_30min_rates
+notes: 'exp034b + delay_stale_stats'
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - delay_stale_stats

@@ -1,0 +1,16 @@
+# Learn the residual against the NM off-block proxy rather than the target.
+#
+# The proxy alone is already a usable prediction, so this asks the model only
+# for the correction -- a much smaller, better-conditioned quantity. The ~1.5%
+# of flights NM never matched fall back to plain target learning, and
+# `aobt3_missing` tells the model which regime each row is in.
+#
+# No target transform: residuals are signed, so log1p is not applicable.
+extends: exp002_catboost_core.yaml
+name: catboost_residual
+notes: "learn taxitime - aobt3_proxy"
+
+target:
+  transform: none
+  clip: null
+  residual_of: aobt3_proxy

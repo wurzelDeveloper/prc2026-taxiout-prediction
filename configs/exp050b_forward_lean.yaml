@@ -1,0 +1,11 @@
+# exp050's lean block set under the forward validation of exp048 (fit Jan-Oct 2025, validate Nov+Dec): does the
+# combined removal behave like the single ones? Two seeds against exp048's 186.6 / 186.9 (bulk).
+extends: exp048_forward_base.yaml
+name: forward_lean
+notes: "exp048 without stale_target_stats, key_target_stats, stand_geometry, taxi_route"
+features:
+  exclude:
+  - stale_target_stats
+  - key_target_stats
+  - stand_geometry
+  - taxi_route

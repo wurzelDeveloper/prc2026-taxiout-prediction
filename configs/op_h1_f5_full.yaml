@@ -1,0 +1,30 @@
+# The owner's traffic-awareness test (12 Oct 2026; findings 10.36, rule T pre-registered before any run): the H1
+# deliverable (op_h1_r4_nodoy) plus traffic AFTER the anchor (prc/features/operational_future.py). In operations the
+# airport's arrival, departure and surface managers (AMAN, DMAN, A-SMGCS) plan it; the challenge data hold only what
+# happened, so the F blocks read the other flights' REALISED movements as a stand-in for those plans (tier F, an upper
+# bound for perfect plans, not available as computed). Holdout only (refit_on_all false), seed 42.
+# Step 5, actual plus planned: op_h1_f4_adsb plus the ADS-B surface picture BEFORE the anchor (op_h1_adsb, R6's block,
+# tier O): the owner's concept of the traffic situation around the planned off-block, both sides.
+extends: op_h1_f4_adsb.yaml
+name: op_h1_f5_full
+notes: "rule T: op_h1_f4_adsb + the ADS-B picture before H1 (R6's block)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm,
+            op_h1_adsb,
+            op_h1_fut_plan, op_h1_fut_rec, op_h1_fut_nm, op_h1_fut_adsb]
+  drop_columns: [takeoff_epoch, op_h1_day_of_year, op_h1_adsb_cov_tko_n_120, op_h1_adsb_cov_ref_n_120,
+                 op_h1_adsb_cov_mov_ratio_120, op_h1_adsb_cov_mov_ratio_30, op_h1_adsb_cov_mov_ratio_10,
+                 op_h1_adsb_cov_act_ratio_5, op_h1_adsb_cov_taxi_share_120, op_h1_adsb_cov_push_share_360,
+                 op_h1_adsb_cov_taxi_ratio_120, op_h1_adsb_cov_hold_ratio_120, op_h1_adsb_cov_ok, op_h1_adsb_cov_taxi_ok,
+                 op_h1_adsb_cov_hold_ok, op_h1_adsb_cov_stand_ok]
+model:
+  block_dropout:
+    op_h1_adsb: 0.25
+    op_h1_fut_adsb: 0.25
+evaluation:
+  permutation:
+    enabled: false

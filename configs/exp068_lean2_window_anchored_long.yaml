@@ -1,0 +1,12 @@
+# exp057 (per-airport regressors anchored on NM's off-block proxy + NM join window) trained longer: learning rate
+# 0.08 -> 0.04, round cap 4,000 -> 8,000, early-stopping patience 200 -> 400. Weight 0.10 in the submitted base stack.
+# The three retrained members of 6 Oct (exp065-exp067) each beat their originals by 1.0-2.2 s without wrong-date rows
+# and reached the board in two steps (v61, v62: -0.10 together); this is the fourth (findings 10.22, 10.24).
+extends: exp057_lean2_window_anchored.yaml
+name: lean2_window_anchored_long
+notes: "exp057 at lr 0.04, iteration cap 8000, od_wait 400 (base trained longer)"
+model:
+  params:
+    learning_rate: 0.04
+    iterations: 8000
+    od_wait: 400

@@ -1,0 +1,53 @@
+# Long-horizon rung 4 at 3 h + the ADS-B archive, runway-blind (every own_runway column of
+# prc/features/_long_tiers.py dropped, the archive's stand x runway and runway statistics among them). It was the
+# deliverable of this lead until the forward check of 10 Oct (findings 10.31): forward (fit Jan-Oct, validate
+# Nov+Dec) the archive cost 3.1 s of MAE at 24 h, so the refit moved to op_hl3_r4_rwyblind. Holdout only. Needs the
+# archive input: python -m prc.adsb.archive (from a worktree add
+# --obs <main>/cache/lab/ideas/stand_archive_obs --src <main>/cache/adsb, or copy the built file and manifest).
+extends: op_hl3_r4_arch.yaml
+name: op_hl3_r4_arch_rwyblind
+notes: "long horizon 3 h r4 + ADS-B archive, runway-blind"
+features:
+  drop_columns:
+    - takeoff_epoch
+    - runway
+    - apt_runway
+    - apt_stand_runway
+    - geo_gc_dist_m
+    - geo_rwy_matched
+    - geo_rwy_length_m
+    - geo_rwy_threshold_bearing_deg
+    - geo_route_dist_m
+    - geo_route_ratio
+    - geo_route_rwy_crossings
+    - geo_route_found
+    - op_hl3_hist_rwy_b3h_n
+    - op_hl3_hist_rwy_b3h_anom_mean
+    - op_hl3_hist_rwy_b3h_anom_share5
+    - op_hl3_hist_rwy_b3h_push_delay_mean
+    - op_hl3_hist_rwy_b24h_n
+    - op_hl3_hist_rwy_b24h_anom_mean
+    - op_hl3_hist_rwy_b24h_anom_share5
+    - op_hl3_hist_rwy_b24h_push_delay_mean
+    - op_hl3_wx_headwind_kt
+    - op_hl3_wx_crosswind_kt
+    - op_hl_dem_dep_sched_rwy_w30
+    - op_hl_dem_dep_sched_rwy_w60
+    - op_hl_dem_arr_sched_rwy_w30
+    - op_hl_dem_arr_sched_rwy_w60
+    - op_arch_sr_power_share
+    - op_arch_sr_push_dur_s
+    - op_arch_sr_es_dur_s
+    - op_arch_sr_start_8kt_s
+    - op_arch_sr_tau_100_s
+    - op_arch_sr_tau_300_s
+    - op_arch_sr_tau_1000_s
+    - op_arch_rwy_power_share
+    - op_arch_rwy_push_dur_s
+    - op_arch_rwy_es_dur_s
+    - op_arch_rwy_start_8kt_s
+    - op_arch_rwy_tau_100_s
+    - op_arch_rwy_tau_300_s
+    - op_arch_rwy_tau_1000_s
+model:
+  refit_on_all: false

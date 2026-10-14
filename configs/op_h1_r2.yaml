@@ -1,0 +1,8 @@
+# H1 rung 2: + weather at the anchor (METAR in force, windows ending at the anchor, TAF issued by then). No ERA5.
+extends: op_base.yaml
+name: op_h1_r2
+notes: "operational H1 r2: + weather at the anchor"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx]

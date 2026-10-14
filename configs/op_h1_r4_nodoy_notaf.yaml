@@ -1,0 +1,13 @@
+# The TAF dependency of the H1 deliverable (findings 10.35): the TAF archive comes from Ogimet, which has no open
+# licence (in operations the TAF comes from the met service). This rung drops the 13 TAF columns and keeps the METARs.
+# Holdout only.
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_r4_nodoy_notaf
+notes: "op_h1_r4_nodoy without the TAF columns"
+features:
+  drop_columns: [takeoff_epoch, op_h1_day_of_year, op_h1_taf_is_amd, op_h1_taf_amd_12h, op_h1_taf_vis_m,
+                 op_h1_taf_ceiling_ft, op_h1_taf_wind_kt, op_h1_taf_snowfrz, op_h1_taf_worst_vis_m,
+                 op_h1_taf_worst_ceiling_ft, op_h1_taf_worst_snowfrz, op_h1_taf_worst_ts, op_h1_taf_temp_prob,
+                 op_h1_taf_f60_worst_vis_m, op_h1_taf_f60_worst_snowfrz]
+model:
+  refit_on_all: false

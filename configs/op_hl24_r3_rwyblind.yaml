@@ -1,0 +1,35 @@
+# A 24 h DELIVERABLE CANDIDATE (findings 10.35, rule R: this rung if its OP MAE is within +0.5 s of
+# op_hl24_r4_rwyblind's on Jan+Jul and on the forward check, op_hl24_r3_rwyblind_fwd against op_hl24_r4_rwyblind_fwd;
+# else r4). Runway-blind 24 h rung 3 on the schedule clock (P = the published schedule, no IOBT, no day of year): the
+# record and plan, the airport layout, the weather known at the anchor and the schedule demand around P, without the
+# NM history of other flights (fold-free: no fold-dependent block). A day ahead the departure runway is the outcome
+# of a runway configuration that is not yet in use (2025: the recorded runway matches the airport's dominant departure
+# runway of the anchor hour a = P - 24 h on 56.4 %), so every own-runway input is dropped
+# (prc/features/_long_tiers.py, tag own_runway: stand/runway keys with the runway, the route to the runway, head- and
+# crosswind, the schedule demand on the own runway). Airport, pier and stand inputs stay. No archive. refit_on_all is
+# on for the final dataset: run WITHOUT --no-test to refit; with --no-test it is a holdout run like the others.
+extends: op_hl24_r3.yaml
+name: op_hl24_r3_rwyblind
+notes: "long horizon 24 h r3, runway-blind (deliverable candidate, rule R)"
+features:
+  drop_columns:
+    - takeoff_epoch
+    - runway
+    - apt_runway
+    - apt_stand_runway
+    - geo_gc_dist_m
+    - geo_rwy_matched
+    - geo_rwy_length_m
+    - geo_rwy_threshold_bearing_deg
+    - geo_route_dist_m
+    - geo_route_ratio
+    - geo_route_rwy_crossings
+    - geo_route_found
+    - op_hl24_wx_headwind_kt
+    - op_hl24_wx_crosswind_kt
+    - op_hl_dem_dep_sched_rwy_w30
+    - op_hl_dem_dep_sched_rwy_w60
+    - op_hl_dem_arr_sched_rwy_w30
+    - op_hl_dem_arr_sched_rwy_w60
+model:
+  refit_on_all: true

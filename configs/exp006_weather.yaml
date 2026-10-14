@@ -1,0 +1,18 @@
+# exp002 plus observed METAR weather at, before and after takeoff.
+# Needs the weather tables: `python -m prc fetch-weather`.
+extends: exp002_catboost_core.yaml
+name: catboost_weather
+notes: "exp002 + group:weather (METAR now / past / future)"
+
+features:
+  # Lists replace rather than merge under `extends:`, so exp002's groups are repeated.
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:weather
+  exclude: []

@@ -1,0 +1,31 @@
+# exp056 (lean2 + join window) plus the forward windows of the other departures' NM proxies (dep_following:
+# mean proxy, its anomaly and the count of departures taking off in the next 15 / 30 min, per airport and runway).
+# Two teams above us gained 0.7 and 1.4 s on the board with forward windows; our dep_live_state only has +-15 min.
+extends: exp056_lean2_window.yaml
+name: lean2_window_following
+notes: "exp056 + dep_following"
+features:
+  include:
+  - group:core
+  - group:temporal
+  - group:nm_schedule
+  - group:stand_runway
+  - group:aircraft
+  - group:congestion
+  - group:turnaround
+  - group:stale
+  - nm_hour_context
+  - nm_cross_deltas
+  - runway_sequence
+  - key_target_stats
+  - taxi_window_counts
+  - wx_deice_load
+  - arrival_conditions
+  - era5_surface
+  - dep_live_state
+  - deicing_context
+  - group:geometry
+  - stand_occupancy
+  - wake_queue
+  - delay_stale_stats
+  - dep_following

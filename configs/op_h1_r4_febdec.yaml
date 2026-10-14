@@ -1,0 +1,12 @@
+# Generalisation of the pre-movement model to Feb-Jun 2026 (findings 10.31): op_h1_r4 validated on 2025-02+2025-12 2025, fitted
+# on the other ten months; no refit, no permutation. The pair's first month is the analogue of the same 2026 month.
+extends: op_h1_r4.yaml
+name: op_h1_r4_febdec
+notes: "op_h1_r4 on 2025-02+2025-12 (Feb-Jun 2026 analogue)"
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+model:
+  refit_on_all: false
+evaluation:
+  permutation:
+    enabled: false

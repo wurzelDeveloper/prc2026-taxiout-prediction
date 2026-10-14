@@ -1,0 +1,17 @@
+# Submission candidate of 2026-09-26: exp043 (v13; three-seed blend v15 = board 304.85) without the four blocks the
+# trimming found dispensable (findings 9.17). Leave-one-out from exp048 (exp043 under the forward validation, fit
+# Jan-Oct 2025, validate Nov+Dec; base bulk 186.76, without wrong-date rows 201.07; seed band +-0.3 bulk):
+# - stale_target_stats: removing it helps (bulk -0.47, -1.48), no drift (adversarial AUC 0.52);
+# - key_target_stats: neutral (-0.14 / -0.15) and it separates 2026 from 2025 (AUC 0.60);
+# - stand_geometry (-0.17 / -0.05) and taxi_route (+0.12 / +0.23): neutral.
+# Everything else costs when removed (nm_hour_context +1.3, dep_live_state +1.1 on the bulk). Its Jan+Jul folds are
+# the local check; refit_on_all is inherited.
+extends: exp043_final_screen.yaml
+name: lean
+notes: "exp043 without stale_target_stats, key_target_stats, stand_geometry, taxi_route"
+features:
+  exclude:
+  - stale_target_stats
+  - key_target_stats
+  - stand_geometry
+  - taxi_route

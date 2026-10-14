@@ -1,0 +1,20 @@
+# exp005 (raw target, no clip) plus the geometry group.
+#
+# exp005 cut the holdout RMSE from 536 to 433 by letting the fit see the tail, so every
+# feature question has to be asked again on this base: on the log1p+clip base the tail
+# hid everything smaller than itself.
+extends: exp005_catboost_raw_target.yaml
+name: catboost_raw_geometry
+notes: "exp005 + group:geometry"
+
+features:
+  include:
+    - group:core
+    - group:temporal
+    - group:nm_schedule
+    - group:stand_runway
+    - group:aircraft
+    - group:congestion
+    - group:turnaround
+    - group:geometry
+  exclude: []

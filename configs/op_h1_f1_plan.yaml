@@ -1,0 +1,22 @@
+# The owner's traffic-awareness test (12 Oct 2026; findings 10.36, rule T pre-registered before any run): the H1
+# deliverable (op_h1_r4_nodoy) plus traffic AFTER the anchor (prc/features/operational_future.py). In operations the
+# airport's arrival, departure and surface managers (AMAN, DMAN, A-SMGCS) plan it; the challenge data hold only what
+# happened, so the F blocks read the other flights' REALISED movements as a stand-in for those plans (tier F, an upper
+# bound for perfect plans, not available as computed). Seed 42 for rule T.
+# Step 1: + the other flights' PLANS after the anchor (tier O*): planned off-blocks and scheduled arrivals in the next
+# 15/30/60 min per airport, own runway and pier.
+# ADOPTED 13 Oct 2026 as the H1 deliverable (the owner's decision; findings 10.37): its inputs are all O or O*, no
+# tier F. Refitted on all twelve months (three seeds, `--seeds 3 --keep-test`, averaged); the refit flag is set here
+# so that those refits (made with -o model.refit_on_all=true, the same resolved config) carry this file's hash.
+extends: op_h1_r4_nodoy.yaml
+name: op_h1_f1_plan
+notes: "H1 deliverable + other flights' plans after H1 (O*; rule T)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h1_static, op_h1_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h1_wx,
+            op_h1_traffic,
+            op_h1_nm,
+            op_h1_fut_plan]
+model:
+  refit_on_all: true

@@ -1,0 +1,16 @@
+# exp032 without the four time-position columns. `takeoff_epoch` (core_keys) and `days_since_epoch`
+# (calendar) put every 2026 row beyond the end of the training range, so each tree split on them sends
+# all of 2026, July included, down the late-December-2025 branch; `day_of_year` and `week_of_year` let
+# the refit copy a 2025 date's conditions onto the same 2026 date. Together they hold ~2.7 % of the
+# regressor's gain (takeoff_epoch ranks 14th of 149 in exp030), and the calendar block's permutation
+# importance is negative (-3.9 s). The Jan+Jul holdout sits inside the training range and cannot see
+# the extrapolation; the board can. The blocks still compute the columns for their dependents.
+extends: exp032_final_era5.yaml
+name: final_nodates
+notes: 'exp032 without takeoff_epoch, days_since_epoch, day_of_year, week_of_year'
+features:
+  drop_columns:
+  - takeoff_epoch
+  - days_since_epoch
+  - day_of_year
+  - week_of_year

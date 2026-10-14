@@ -1,0 +1,8 @@
+# exp062_lean2_window_pru on the Feb+Dec 2025 winter holdout (the months with snow-disrupted days)
+extends: exp062_lean2_window_pru.yaml
+name: lean2_window_pru_winter
+notes: "exp062_lean2_window_pru on Feb+Dec 2025"
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+model:
+  refit_on_all: false

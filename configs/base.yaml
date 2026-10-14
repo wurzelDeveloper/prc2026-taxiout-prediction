@@ -1,0 +1,50 @@
+# Defaults every experiment inherits. Override in a child config with `extends: base.yaml`.
+name: base
+seed: 42
+notes: ""
+
+data:
+  version: v1          # bump when prc/data.py changes; partitions the feature cache
+  airports: all
+  sample_frac: 1.0     # thin training rows for fast ablation sweeps
+
+features:
+  include: [group:core]
+  exclude: []
+  params: {}           # per-block params, e.g. {stand_runway_target_stats: {min_support: 50}}
+
+target:
+  column: TAXITIME_SEC_mvt
+  transform: none      # none | log1p | sqrt
+  clip: null           # [lo, hi] applied to TRAINING targets only
+  residual_of: null    # e.g. aobt3_proxy -> learn the residual against the NM proxy
+
+validation:
+  scheme: seasonal_holdout
+  holdout_months: ["2025-01", "2025-07"]   # seasonal analogue of the Jan/Jul 2026 test set
+  n_folds: 5
+
+model:
+  type: catboost
+  per_airport: false
+  # true: after the folds are scored, refit on every training row (holdout months
+  # included) and take the ranking predictions from that model. Submission runs only.
+  refit_on_all: false
+  params: {}
+
+geometry:
+  # Hand-placed stands (CSV: apt, stand_mvt, lat, lon [, ref, note]) merged over the OSM
+  # stands by `python -m prc fetch-geometry -c <config>`; a row with empty coordinates
+  # marks the stand unknown. Path relative to the repo root. Rebuild the tables after
+  # editing it (`fetch-geometry --offline`); they are shared by every experiment.
+  stands_file: null
+
+evaluation:
+  primary_metric: rmse
+  breakdowns: [apt, month, hour_local, split]
+  permutation:
+    enabled: true
+    granularity: block
+    repeats: 3
+    sample: 200000
+  shap: false

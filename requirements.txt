@@ -1,0 +1,24 @@
+pyarrow
+pandas
+numpy
+ipykernel
+
+# pipeline
+pyyaml
+scikit-learn
+scipy            # taxiway routing (sparse dijkstra); already a scikit-learn dependency
+catboost
+tqdm
+joblib
+requests         # prc fetch-adsb (prc/adsb/stream.py)
+orjson           # prc fetch-adsb: parses the adsb.lol trace files
+
+# optional: other learner families, not in the submitted lineage (docs/submission_manifest.md)
+# lightgbm       # model.type: lightgbm (prc/models/gbdt.py imports it lazily); no run uses it
+# xgboost        # lab/adsb_apply.py --xgb (findings 10.20: a tie); not in the submission
+
+# notebooks / dev
+matplotlib
+nbformat
+nbclient
+pytest

@@ -1,0 +1,10 @@
+# exp050 (the lean set) with a more regularised regressor: depth 6 (7) and l2_leaf_reg 10 (3). Neutral alone under the
+# forward validation (exp049, findings 9.17); here as a differently built member for the wide blends (findings 9.20:
+# v27-v29, blends gain from different models, no longer from more seeds of one).
+extends: exp050_lean.yaml
+name: lean_regularised
+notes: "exp050 + depth 6, l2_leaf_reg 10"
+model:
+  params:
+    depth: 6
+    l2_leaf_reg: 10.0

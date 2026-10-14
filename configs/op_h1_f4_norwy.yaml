@@ -1,0 +1,50 @@
+# Rule T's own-slot bound (findings 10.36): op_h1_f4_adsb without the F columns that describe the OTHER flights'
+# takeoff sequence on the own runway after the anchor. The own takeoff takes one slot of that sequence, so these columns
+# carry the weakest trace of it; the plans (O*) stay.
+extends: op_h1_f4_adsb.yaml
+name: op_h1_f4_norwy
+notes: "rule T: op_h1_f4_adsb without the own-runway sequence after H1"
+features:
+  drop_columns: [takeoff_epoch, op_h1_day_of_year,
+                 op_h1_frec_f15_dep_rwy_b15,
+                 op_h1_frec_f15_dep_rwy_b30,
+                 op_h1_frec_f15_arr_rwy_b15,
+                 op_h1_frec_f15_rwy_own_share_b60,
+                 op_h1_frec_f15_rwy_own_dominant_b60,
+                 op_h1_frec_f30_dep_rwy_b15,
+                 op_h1_frec_f30_dep_rwy_b30,
+                 op_h1_frec_f30_arr_rwy_b15,
+                 op_h1_frec_f30_rwy_own_share_b60,
+                 op_h1_frec_f30_rwy_own_dominant_b60,
+                 op_h1_frec_f45_dep_rwy_b15,
+                 op_h1_frec_f45_dep_rwy_b30,
+                 op_h1_frec_f45_arr_rwy_b15,
+                 op_h1_frec_f45_rwy_own_share_b60,
+                 op_h1_frec_f45_rwy_own_dominant_b60,
+                 op_h1_fnm_f15_nm_rwy_b30_anom_mean,
+                 op_h1_fnm_f15_nm_rwy_b30_anom_share5,
+                 op_h1_fnm_f15_nm_rwy_b30_push_delay_mean,
+                 op_h1_fnm_f15_nm_rwy_b60_anom_mean,
+                 op_h1_fnm_f15_nm_rwy_b60_anom_share5,
+                 op_h1_fnm_f15_nm_rwy_b60_push_delay_mean,
+                 op_h1_fnm_f30_nm_rwy_b30_anom_mean,
+                 op_h1_fnm_f30_nm_rwy_b30_anom_share5,
+                 op_h1_fnm_f30_nm_rwy_b30_push_delay_mean,
+                 op_h1_fnm_f30_nm_rwy_b60_anom_mean,
+                 op_h1_fnm_f30_nm_rwy_b60_anom_share5,
+                 op_h1_fnm_f30_nm_rwy_b60_push_delay_mean,
+                 op_h1_fnm_f45_nm_rwy_b30_anom_mean,
+                 op_h1_fnm_f45_nm_rwy_b30_anom_share5,
+                 op_h1_fnm_f45_nm_rwy_b30_push_delay_mean,
+                 op_h1_fnm_f45_nm_rwy_b60_anom_mean,
+                 op_h1_fnm_f45_nm_rwy_b60_anom_share5,
+                 op_h1_fnm_f45_nm_rwy_b60_push_delay_mean,
+                 op_h1_fnm_f15_backlog_rwy,
+                 op_h1_fnm_f30_backlog_rwy,
+                 op_h1_fnm_f45_backlog_rwy,
+                 op_h1_fadsb_f15_rwy_own_hold_now,
+                 op_h1_fadsb_f30_rwy_own_hold_now,
+                 op_h1_fadsb_f45_rwy_own_hold_now]
+evaluation:
+  permutation:
+    enabled: false

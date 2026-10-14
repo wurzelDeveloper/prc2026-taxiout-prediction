@@ -1,0 +1,8 @@
+# exp056 on the Feb+Dec 2025 winter holdout: the baseline for exp062w/exp063w
+extends: exp056_lean2_window.yaml
+name: lean2_window_winter
+notes: "exp056 on Feb+Dec 2025"
+validation:
+  holdout_months: ["2025-02", "2025-12"]
+model:
+  refit_on_all: false

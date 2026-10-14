@@ -1,0 +1,30 @@
+# exp023 with a wider universe: any departure whose schedule delta is two hours or
+# more is a candidate, typed and NM-joined ones included. Typed rows above 2 h are
+# stale in a few per cent of cases (LIRF 37 of 41, EGLL 18 of 37 in 2025), which a
+# calibrated classifier turns into a small expected-value correction instead of
+# leaving the whole error on the rare stale row. The universe grows from ~1,500
+# to ~31,000 training rows, so the classifier moves to the GPU. Its rows are
+# weighted by the candidate delta (what a wrong regime costs): full holdout 344.9
+# against 348.2 unweighted and 349.1 for exp022's residual base; without the
+# wrong-date rows 274.8 / 274.1 / 277.2.
+extends: exp023_raw_per_airport_mixture.yaml
+name: catboost_raw_per_airport_mixture_wide
+notes: "exp023 with min_base_sec 7200: typed rows with a 2 h+ delta join the classifier's universe; delta-weighted classifier"
+
+model:
+  mixture:
+    min_base_sec: 7200
+    classifier_weight_power: 1
+    # The regressor's fit also loses the ~70 rows a year with a multi-hour target that
+    # matches no regime (wrong-date rows outside the segment, typed rows with an
+    # unexplained block time). Zürich's model then trains to iteration ~2,000 instead
+    # of 49 (245 -> 209); the other airports move by -2..+5 s, the headline stays at
+    # 345.0 and the wrong-date-free number improves 274.8 -> 274.3.
+    regressor_max_target_sec: 7200
+    classifier_params:
+      iterations: 1000
+      learning_rate: 0.05
+      depth: 6
+      od_wait: 100
+      task_type: GPU
+      devices: "0"

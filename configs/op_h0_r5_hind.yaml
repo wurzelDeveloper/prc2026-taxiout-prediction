@@ -1,0 +1,23 @@
+# H0 rung 5 + HINDSIGHT (LAB, 2025 only, never operational): op_h0_r5 plus op_h0_hind_lab, the traffic counted
+# over the flight's OWN taxi [recorded off-block, own takeoff] (other takeoffs at the airport and on the own
+# runway, landings, other departures taxiing at the same time). It uses the own takeoff, so it is not a rung of
+# the operational ladder: it measures how much of the literature's accuracy comes from own-taxi counts
+# (Idris Q, Wang Group E, Wu/Tang/Yin/He AQLI/SCFI). H0 r5 hind - H0 r5 = the hindsight share.
+# Holdout only (--no-test); never a board or refit config (tests/test_operational_hind.py). Permutation off: the
+# step op_h0_r5 -> op_h0_r5_hind measures the hindsight share directly.
+extends: op_h0_r5.yaml
+name: op_h0_r5_hind
+notes: "operational H0 r5 + own-taxi counts (lab, HINDSIGHT, not operational)"
+features:
+  include: [core_keys, stand_runway_keys, aircraft_identity, op_h0_static, op_h0_plan,
+            taxi_distance, taxi_route, stand_geometry,
+            op_h0_wx,
+            op_h0_traffic,
+            op_h0_nm,
+            op_h0_feed_lab,
+            op_h0_hind_lab]
+model:
+  refit_on_all: false
+evaluation:
+  permutation:
+    enabled: false
